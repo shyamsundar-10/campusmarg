@@ -1,4 +1,4 @@
-# Eco-Route: Smart Student Commute Planner
+# Campus Marg: Smart Student Commute Planner
 
 ## Table of Contents
 1. Introduction
@@ -7,7 +7,7 @@
 4. File Structure
 
 ## Introduction
-"Eco-Route: Smart Student Commute Planner" is a mobile application designed to optimize school bus routes based on student attendance. This project aims to reduce fuel consumption and carbon emissions by dynamically updating bus routes using real-time student attendance data.
+Campus Marg is a mobile application designed to optimize school bus routes based on student attendance. This project aims to reduce fuel consumption and carbon emissions by dynamically updating bus routes using real-time student attendance data.
 
 ## Features
 - Student attendance confirmation before bus starts.
@@ -24,7 +24,7 @@
 - Google OR-Tools for route optimization.
 
 ## File Structure
-EcoRoute/  
+campusmarg/  
 │  
 ├── app/  
 │   ├── components/  
