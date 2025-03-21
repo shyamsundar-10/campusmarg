@@ -6,6 +6,8 @@ import HelpScreen from "@/screens/HelpScreen";
 import MapScreen from "@/screens/MapScreen";
 import AboutScreen from "@/screens/AboutScreen";
 import ProfileScreen from "@/screens/ProfileScreen";
+import AttendanceScreen from "@/screens/AttendanceScreen";
+import HomeScreen from "@/screens/HomeScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -18,8 +20,10 @@ const App = () => (
       },
     }}
   >
+    <Drawer.Screen name="Home" component={HomeScreen} />
     <Drawer.Screen name="Live Tracking" component={MapScreen} />
     <Drawer.Screen name="Profile" component={ProfileScreen} />
+    <Drawer.Screen name="Attendance" component={AttendanceScreen} />
     <Drawer.Screen name="Settings" component={SettingsScreen} />
     <Drawer.Screen name="Help & Support" component={HelpScreen} />
     <Drawer.Screen name="About us" component={AboutScreen} />
