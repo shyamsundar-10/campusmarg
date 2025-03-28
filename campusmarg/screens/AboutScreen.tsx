@@ -1,28 +1,96 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { Layout, Text, Card, Avatar } from "@ui-kitten/components";
+import { ScrollView } from "react-native-gesture-handler";
+const teamMembers = [
+  {
+    name: "Shyam",
+    role: "Developer",
+    image: require("../assets/images/shyam.png"),
+  },
+  {
+    name: "Siddharth",
+    role: "Developer",
+    image: require("../assets/images/siddharth.png"),
+  },
+  {
+    name: "Akankhya",
+    role: "Developer",
+    image: require("../assets/images/akku.png"),
+  },
+  {
+    name: "Abhisek",
+    role: "Developer",
+    image: require("../assets/images/abhi.png"),
+  },
+];
 
-const AboutScreen = () => {
+const AboutUs = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <View>
-        <Text style={styles.title}>About Page</Text>
-      </View>
-    </SafeAreaView>
+    <ScrollView style={styles.container}>
+      <Layout>
+        <Text category="h3" style={styles.sectionTitle}>
+          Development Team
+        </Text>
+        <View style={styles.teamContainer}>
+          {teamMembers.map((member, index) => (
+            <Card key={index} style={styles.teamCard}>
+              <Avatar source={member.image} style={styles.avatar} />
+              <Text style={{ textAlign: "center" }} category="h6">
+                {member.name}
+              </Text>
+              <Text style={{ textAlign: "center" }} category="s1">
+                {member.role}
+              </Text>
+            </Card>
+          ))}
+        </View>
+        <Text style={styles.quote}>
+          "Revolutionizing campus life with simplicity and efficiency."
+        </Text>
+      </Layout>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#f5f5f5",
+    padding: 20,
+    backgroundColor: "white",
   },
-  title: {
-    fontSize: 24,
+  sectionTitle: {
+    textAlign: "center",
+    padding: 20,
+    marginBottom: 20,
     fontWeight: "bold",
+  },
+  teamContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    width: "100%",
+  },
+  teamCard: {
+    width: "47%",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 15,
+    margin: 5,
+    borderRadius: 25,
+    elevation: 5,
+  },
+  quote: {
+    textAlign: "center",
+    fontStyle: "italic",
+    color: "gray",
+    margin: 50,
+  },
+  avatar: {
+    width: 100,
+    height: 100,
     marginBottom: 10,
   },
 });
 
-export default AboutScreen;
+export default AboutUs;
