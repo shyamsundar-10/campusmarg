@@ -78,7 +78,7 @@ const App = () => (
         ),
       }}
     />
-    <Drawer.Screen
+    {/* <Drawer.Screen
       name="Attendance"
       component={AttendanceScreen}
       options={{
@@ -86,7 +86,7 @@ const App = () => (
           <Ionicons name="calendar-outline" size={size} color={color} />
         ),
       }}
-    />
+    /> */}
     <Drawer.Screen
       name="Settings"
       component={SettingsScreen}
