@@ -7,6 +7,8 @@ const Layout = () => (
   <ApplicationProvider {...eva} theme={eva.light}>
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="index" />
+      {/* <Stack.Screen name="screens/WelcomeScreen" />
+      <Stack.Screen name="screens/BottomTabs" /> */}
     </Stack>
   </ApplicationProvider>
 );

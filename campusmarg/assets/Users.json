@@ -1,0 +1,252 @@
+[
+  {
+    "photo": "https://randomuser.me/api/portraits/women/1.jpg",
+    "name": "Sai Patel",
+    "sic": "21BTP95",
+    "address": {
+      "area": "Patia",
+      "latitude": 20.263669,
+      "longitude": 85.780533
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/men/2.jpg",
+    "name": "Ira Patel",
+    "sic": "21BCP69",
+    "address": {
+      "area": "CRP Square",
+      "latitude": 20.30777,
+      "longitude": 85.801585
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/women/3.jpg",
+    "name": "Arjun Sharma",
+    "sic": "21BZL90",
+    "address": {
+      "area": "Khandagiri",
+      "latitude": 20.348472,
+      "longitude": 85.795653
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/men/4.jpg",
+    "name": "Ishaan Singh",
+    "sic": "21BRR25",
+    "address": {
+      "area": "Khandagiri",
+      "latitude": 20.277246,
+      "longitude": 85.792543
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/women/5.jpg",
+    "name": "Saanvi Nair",
+    "sic": "21BHP61",
+    "address": {
+      "area": "Baramunda",
+      "latitude": 20.306787,
+      "longitude": 85.839225
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/men/6.jpg",
+    "name": "Navya Mishra",
+    "sic": "21BEM65",
+    "address": {
+      "area": "Khandagiri",
+      "latitude": 20.26082,
+      "longitude": 85.840013
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/women/7.jpg",
+    "name": "Saanvi Verma",
+    "sic": "21BXC90",
+    "address": {
+      "area": "Baramunda",
+      "latitude": 20.276246,
+      "longitude": 85.7889
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/men/8.jpg",
+    "name": "Vihaan Patel",
+    "sic": "21BHG45",
+    "address": {
+      "area": "Unit 8",
+      "latitude": 20.289085,
+      "longitude": 85.839804
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/women/9.jpg",
+    "name": "Ishaan Sharma",
+    "sic": "21BVZ28",
+    "address": {
+      "area": "CRP Square",
+      "latitude": 20.305137,
+      "longitude": 85.756095
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/men/10.jpg",
+    "name": "Aanya Jain",
+    "sic": "21BGK31",
+    "address": {
+      "area": "Patia",
+      "latitude": 20.302326,
+      "longitude": 85.755416
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/women/11.jpg",
+    "name": "Meera Gupta",
+    "sic": "21BMM79",
+    "address": {
+      "area": "Jaydev Vihar",
+      "latitude": 20.274772,
+      "longitude": 85.773441
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/men/12.jpg",
+    "name": "Navya Reddy",
+    "sic": "21BVH58",
+    "address": {
+      "area": "Unit 8",
+      "latitude": 20.320821,
+      "longitude": 85.825609
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/women/13.jpg",
+    "name": "Arjun Mishra",
+    "sic": "21BUN56",
+    "address": {
+      "area": "Baramunda",
+      "latitude": 20.276567,
+      "longitude": 85.78162
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/men/14.jpg",
+    "name": "Ishaan Jain",
+    "sic": "21BCP36",
+    "address": {
+      "area": "Sailashree Vihar",
+      "latitude": 20.335957,
+      "longitude": 85.805898
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/women/15.jpg",
+    "name": "Kiara Mishra",
+    "sic": "21BHS41",
+    "address": {
+      "area": "Rasulgarh",
+      "latitude": 20.340152,
+      "longitude": 85.803416
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/men/16.jpg",
+    "name": "Myra Reddy",
+    "sic": "21BZH36",
+    "address": {
+      "area": "Unit 8",
+      "latitude": 20.279418,
+      "longitude": 85.783434
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/women/17.jpg",
+    "name": "Myra Yadav",
+    "sic": "21BCG27",
+    "address": {
+      "area": "Unit 8",
+      "latitude": 20.274744,
+      "longitude": 85.809252
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/men/18.jpg",
+    "name": "Myra Patel",
+    "sic": "21BYG17",
+    "address": {
+      "area": "Patia",
+      "latitude": 20.33239,
+      "longitude": 85.789942
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/women/19.jpg",
+    "name": "Rohan Nair",
+    "sic": "21BXI33",
+    "address": {
+      "area": "Khandagiri",
+      "latitude": 20.278373,
+      "longitude": 85.762924
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/men/20.jpg",
+    "name": "Ira Sharma",
+    "sic": "21BTU12",
+    "address": {
+      "area": "Unit 8",
+      "latitude": 20.333815,
+      "longitude": 85.819052
+    },
+    "usertype": "student"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/women/21.jpg",
+    "name": "Kiara Verma",
+    "sic": "21BNQ16",
+    "usertype": "driver"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/men/22.jpg",
+    "name": "Anirudh Mishra",
+    "sic": "21BZQ91",
+    "usertype": "driver"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/women/23.jpg",
+    "name": "Krishna Gupta",
+    "sic": "21BGB18",
+    "usertype": "driver"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/men/24.jpg",
+    "name": "Anirudh Verma",
+    "sic": "21BEM66",
+    "usertype": "driver"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/women/25.jpg",
+    "name": "Kiara Singh",
+    "sic": "21BMI75",
+    "usertype": "driver"
+  }
+]
