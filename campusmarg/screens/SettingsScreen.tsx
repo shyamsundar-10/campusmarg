@@ -1,25 +1,42 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
-import { Layout, Text, Toggle, Divider, List, ListItem } from "@ui-kitten/components";
+import { View, StyleSheet, Alert } from "react-native";
+import { Layout, Text, Toggle, Divider, List, ListItem, Button } from "@ui-kitten/components";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Updates from "expo-updates";
 
 const SettingsScreen = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
-    // theme switching logic 
+    // TODO: Connect with ThemeContext or UI Kitten theme switch
   };
 
-  const data = [
+  const handleLogout = async () => {
+    Alert.alert("Logout", "Are you sure you want to log out?", [
+      { text: "Cancel", style: "cancel" },
+      {
+        text: "Logout",
+        style: "destructive",
+        onPress: async () => {
+          await AsyncStorage.removeItem("hasSeenWelcome");
+          await AsyncStorage.removeItem("userData");
+          await Updates.reloadAsync();
+        },
+      },
+    ]);
+  };
+
+  const aboutData = [
     {
-      title: "Terms of Use and Privacy Policy",
-      description: "View legal details",
+      title: "Terms of Use & Privacy Policy",
+      description: "Read our terms and privacy policies.",
       onPress: () => alert("Terms of Use and Privacy Policy"),
     },
     {
       title: "App Version",
       description: "Version 1.0.0",
-      onPress: () => alert("1.0.0"),
+      onPress: () => alert("Version 1.0.0"),
     },
   ];
 
@@ -29,14 +46,15 @@ const SettingsScreen = () => {
       <Text category="h6" style={styles.sectionTitle}>
         Appearance
       </Text>
-      <View style={styles.itemContainer}>
+      <View style={styles.itemRow}>
         <Text>Light Theme</Text>
         <Toggle disabled checked={darkMode} onChange={toggleDarkMode} />
       </View>
-      <View style={styles.itemContainer}>
+      <View style={styles.itemRow}>
         <Text>Notifications</Text>
         <Toggle disabled checked />
       </View>
+
       <Divider style={styles.divider} />
 
       {/* About Section */}
@@ -44,7 +62,8 @@ const SettingsScreen = () => {
         About
       </Text>
       <List
-        data={data}
+        data={aboutData}
+        ItemSeparatorComponent={Divider}
         renderItem={({ item }) => (
           <ListItem
             title={item.title}
@@ -53,6 +72,15 @@ const SettingsScreen = () => {
           />
         )}
       />
+
+      <Divider style={styles.divider} />
+
+      {/* Logout */}
+      <View style={styles.logoutContainer}>
+        <Button status="danger" onPress={handleLogout}>
+          Logout
+        </Button>
+      </View>
     </Layout>
   );
 };
@@ -67,14 +95,20 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontWeight: "bold",
   },
-  itemContainer: {
+  itemRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: 10,
+    paddingVertical: 12,
   },
   divider: {
-    marginVertical: 15,
+    marginVertical: 20,
+  },
+  logoutContainer: {
+    marginTop: "auto",
+    paddingTop: 20,
+    borderTopWidth: 1,
+    borderTopColor: "#eee",
   },
 });
 

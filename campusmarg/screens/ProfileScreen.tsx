@@ -1,143 +1,126 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  StyleSheet,
-  Dimensions,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, Image, ActivityIndicator } from "react-native";
+import { Text, Layout, Card } from "@ui-kitten/components";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const { width } = Dimensions.get("window");
+interface Address {
+  area: string;
+  latitude?: number;
+  longitude?: number;
+}
 
-const ProfileScreen: React.FC = () => {
-  const [avatar, setAvatar] = useState<{ uri: string }>({
-    uri: "https://th.bing.com/th/id/OIP.DfbvP4LXGsNlhGino3DA6QHaHa?rs=1&pid=ImgDetMain",
-  });
-  const [name, setName] = useState<string>("Demo Name");
-  const [sic, setSic] = useState<string>("21bcse00");
-  const [address, setAddress] = useState<string>(
-    "Silicon University, Patia, 751024"
-  );
-  const [phone, setPhone] = useState<string>("7780951420");
+interface User {
+  name: string;
+  photo: string;
+  sic: string;
+  usertype: string;
+  phone?: string;
+  bloodGroup?: string;
+  address?: Address;
+}
+
+const ProfileScreen = () => {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        const storedUser = await AsyncStorage.getItem("currentUser");
+        if (storedUser) {
+          setUser(JSON.parse(storedUser));
+        }
+      } catch (error) {
+        console.error("Failed to load user from storage", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadUser();
+  }, []);
+
+  if (loading) {
+    return (
+      <Layout style={styles.centered}>
+        <ActivityIndicator size="large" color="#25aee0" />
+      </Layout>
+    );
+  }
+
+  if (!user) {
+    return (
+      <Layout style={styles.centered}>
+        <Text category="h5">No user data found.</Text>
+      </Layout>
+    );
+  }
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={styles.scrollContent}
-      showsVerticalScrollIndicator={false}
-    >
-      <View style={styles.card}>
-        <TouchableOpacity style={styles.avatarContainer}>
-          <Image source={avatar} style={styles.avatar} />
-          <View style={styles.editIcon}>
-            <Ionicons name="camera" size={18} color="#fff" />
-          </View>
-        </TouchableOpacity>
+    <Layout style={styles.container}>
+      <Card style={styles.card}>
+        <Image source={{ uri: user.photo }} style={styles.avatar} />
+        <Text category="h5" style={styles.name}>
+          {user.name}
+        </Text>
+        <Text appearance="hint" style={styles.infoText}>SIC: {user.sic}</Text>
+        <Text appearance="hint" style={styles.infoText}>User Type: {user.usertype}</Text>
 
-        <View style={styles.infoContainer}>
-          <Text style={styles.label}>Name</Text>
-          <TextInput style={styles.input} value={name} onChangeText={setName} />
+        {user.phone && (
+          <Text appearance="hint" style={styles.infoText}>Phone: {user.phone}</Text>
+        )}
+        {user.bloodGroup && (
+          <Text appearance="hint" style={styles.infoText}>Blood Group: {user.bloodGroup}</Text>
+        )}
 
-          <Text style={styles.label}>SIC</Text>
-          <TextInput style={styles.input} value={sic} onChangeText={setSic} />
-
-          <Text style={styles.label}>Address</Text>
-          <TextInput
-            style={styles.input}
-            value={address}
-            onChangeText={setAddress}
-          />
-
-          <Text style={styles.label}>Phone No</Text>
-          <TextInput
-            style={styles.input}
-            value={phone}
-            onChangeText={setPhone}
-            keyboardType="phone-pad"
-          />
-        </View>
-
-        <TouchableOpacity style={styles.saveBtn}>
-          <Text style={styles.saveText}>Save Profile</Text>
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
+        {user.usertype === "student" && user.address && (
+          <>
+            <Text style={styles.sectionTitle}>Address Info</Text>
+            <Text appearance="hint" style={styles.infoText}>Area: {user.address.area}</Text>
+            <Text appearance="hint" style={styles.infoText}>Latitude: {user.address.latitude}</Text>
+            <Text appearance="hint" style={styles.infoText}>Longitude: {user.address.longitude}</Text>
+          </>
+        )}
+      </Card>
+    </Layout>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
-  },
-  scrollContent: {
-    flexGrow: 1,
-    alignItems: "center",
+    padding: 20,
   },
   card: {
-    width: "90%",
-    backgroundColor: "#fff",
-    padding: 20,
-    marginTop: 20,
     alignItems: "center",
-  },
-  avatarContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-    position: "relative",
-    marginBottom: 20,
+    padding: 25,
+    borderRadius: 12,
   },
   avatar: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    borderWidth: 4,
-    borderColor: "#c0d9e2",
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginBottom: 15,
   },
-  editIcon: {
-    position: "absolute",
-    bottom: 5,
-    right: 5,
-    backgroundColor: "#2575fc",
-    padding: 5,
-    borderRadius: 15,
-  },
-  infoContainer: {
-    width: "100%",
-  },
-  label: {
-    fontSize: 16,
+  name: {
     fontWeight: "bold",
-    color: "#333",
-    marginTop: 10,
-  },
-  input: {
-    fontSize: 16,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 8,
-    backgroundColor: "#f9f9f9",
-    marginTop: 5,
-  },
-  saveBtn: {
-    backgroundColor: "#2575fc",
-    paddingVertical: 12,
-    paddingHorizontal: 40,
-    borderRadius: 8,
-    marginTop: 20,
-    width: "100%",
-  },
-  saveText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "bold",
+    marginBottom: 10,
     textAlign: "center",
+  },
+  infoText: {
+    marginTop: 4,
+    fontSize: 16,
+  },
+  sectionTitle: {
+    marginTop: 15,
+    fontWeight: "bold",
+    fontSize: 16,
+    color: "#3366FF",
+  },
+  centered: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

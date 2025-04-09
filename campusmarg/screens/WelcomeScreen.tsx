@@ -1,86 +1,89 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Button,
-  Image,
-  Alert,
-  TouchableOpacity,
-} from "react-native";
-import { useRouter } from "expo-router";
-import users from "../assets/Users.json";
+import { View, StyleSheet, TextInput, Alert } from "react-native";
+import { Layout, Button, Text } from "@ui-kitten/components";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import users from "../assets/Users.json";
 
-const WelcomeScreen = () => {
-  const router = useRouter();
+type Props = {
+  onDone: () => void;
+};
+
+const WelcomeScreen = ({ onDone }: Props) => {
   const [userType, setUserType] = useState<"student" | "driver" | null>(null);
   const [sic, setSic] = useState("");
 
-  const handleLogin = async () => {
-    const user = users.find(
-      (u) => u.usertype === userType && u.sic.toLowerCase() === sic.toLowerCase()
+  const handleVerification = async () => {
+    if (!userType) {
+      Alert.alert("Error", "Please select a user type.");
+      return;
+    }
+
+    const matchedUser = users.find(
+      (user) =>
+        user.usertype.toLowerCase() === userType.toLowerCase() &&
+        user.sic.trim().toLowerCase() === sic.trim().toLowerCase()
     );
 
-    if (user) {
-      await AsyncStorage.setItem("user", JSON.stringify(user));
-      await AsyncStorage.setItem("hasLoggedIn", "true");
-      router.replace("./BottomTabs"); // Navigate to main app
+    if (matchedUser) {
+      await AsyncStorage.setItem("hasSeenWelcome", "true");
+      await AsyncStorage.setItem("currentUser", JSON.stringify(matchedUser));
+      onDone();
     } else {
       Alert.alert("Invalid SIC", "No matching user found.");
     }
   };
 
-  if (!userType) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Welcome to Campus Marg</Text>
-        <TouchableOpacity style={styles.btn} onPress={() => setUserType("student")}>
-          <Text style={styles.btnText}>I’m a Student</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.btn} onPress={() => setUserType("driver")}>
-          <Text style={styles.btnText}>I’m a Driver</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
-
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Enter your SIC Number</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="e.g., 21BACD4"
-        value={sic}
-        onChangeText={setSic}
-        autoCapitalize="characters"
-      />
-      <Button title="Verify" onPress={handleLogin} />
-    </View>
+    <Layout style={styles.container}>
+      <Text category="h4" style={{ marginBottom: 20 }}>
+        Welcome
+      </Text>
+      {!userType ? (
+        <>
+          <Button onPress={() => setUserType("student")} style={styles.button}>
+            I am a Student
+          </Button>
+          <Button onPress={() => setUserType("driver")} style={styles.button}>
+            I am a Driver
+          </Button>
+        </>
+      ) : (
+        <>
+          <Text>Enter your SIC Number:</Text>
+          <TextInput
+            placeholder="e.g., 21BCSB14"
+            value={sic}
+            onChangeText={setSic}
+            style={styles.input}
+          />
+          <Button onPress={handleVerification} style={styles.button}>
+            Verify
+          </Button>
+        </>
+      )}
+    </Layout>
   );
 };
 
-export default WelcomeScreen;
-
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", alignItems: "center", padding: 20 },
-  title: { fontSize: 22, fontWeight: "bold", marginBottom: 20 },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+  },
   input: {
     borderWidth: 1,
     borderColor: "#ccc",
-    padding: 12,
-    width: "80%",
-    borderRadius: 8,
-    marginBottom: 20,
-  },
-  btn: {
-    backgroundColor: "#25aee0",
-    padding: 15,
-    borderRadius: 10,
+    padding: 10,
+    width: "100%",
     marginVertical: 10,
-    width: "80%",
-    alignItems: "center",
+    borderRadius: 5,
   },
-  btnText: { color: "#fff", fontWeight: "bold" },
+  button: {
+    marginVertical: 10,
+    width: "100%",
+  },
 });
+
+export default WelcomeScreen;
