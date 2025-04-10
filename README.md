@@ -24,36 +24,34 @@ Campus Marg is a mobile application designed to optimize school bus routes based
 - Google OR-Tools for route optimization.
 
 ## File Structure
-.
-├── campusmarg /
-│   ├── > .expo 
-│   ├── app /
-│   │   ├── _layout.tsx 
-│   │   ├── About.tsx 
-│   │   ├── BottomTabs.tsx 
-│   │   ├── Help.tsx 
-│   │   ├── Home.tsx 
-│   │   ├── index.tsx 
-│   │   ├── Map.tsx 
-│   │   ├── Profile.tsx 
-│   │   ├── Settings.tsx 
-│   │   └── Welcome.tsx 
-│   ├── assets /
-│   │   ├── > fonts 
-│   │   ├── > images 
-│   │   └── {} Users.json 
-│   ├── > components 
-│   ├── > hooks 
+.  
+├── campusmarg /  
+│   ├── > .expo   
+│   ├── app /  
+│   │   ├── _layout.tsx   
+│   │   ├── About.tsx   
+│   │   ├── BottomTabs.tsx   
+│   │   ├── Help.tsx   
+│   │   ├── Home.tsx   
+│   │   ├── index.tsx   
+│   │   ├── Map.tsx   
+│   │   ├── Profile.tsx   
+│   │   ├── Settings.tsx   
+│   │   └── Welcome.tsx   
+│   ├── assets /  
+│   │   ├── > fonts   
+│   │   ├── > images   
+│   │   └── {} Users.json     
+│   ├── > components   
+│   ├── > hooks   
 │   ├── > node_modules 
-│   ├── scripts 
-│   ├── .gitignore 
-│   ├── {} 
-│   ├── app.json 
-│   ├── TS 
-│   ├── expo-env.d.ts 
-│   ├── M 
-│   ├── {} package-lock.json 
-│   ├── {} package.json 
-│   ├── README.md 
-│   └── tsconfig.json 
-└── README.md
+│   ├── scripts   
+│   ├── .gitignore   
+│   ├── {}   
+│   ├── app.json    
+│   ├── expo-env.d.ts   
+│   ├── {} package-lock.json   
+│   ├── {} package.json   
+│   ├── README.md   
+│   └── tsconfig.json   
+└── README.md  
