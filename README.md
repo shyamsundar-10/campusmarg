@@ -24,49 +24,36 @@ Campus Marg is a mobile application designed to optimize school bus routes based
 - Google OR-Tools for route optimization.
 
 ## File Structure
-campusmarg/  
-│  
-├── app/  
-│   ├── components/  
-│   │   ├── AttendanceForm.js  
-│   │   ├── BusRouteMap.js  
-│   │   └── ...  
-│   ├── screens/  
-│   │   ├── HomeScreen.js  
-│   │   ├── AttendanceScreen.js  
-│   │   ├── RouteScreen.js  
-│   │   └── ...  
-│   ├── services/  
-│   │   ├── attendanceService.js  
-│   │   ├── routeService.js  
-│   │   └── ...  
-│   ├── App.js  
-│   ├── ...  
-│  
-├── backend/  
-│   ├── controllers/  
-│   │   ├── attendanceController.js  
-│   │   ├── routeController.js  
-│   │   └── ...  
-│   ├── models/  
-│   │   ├── Student.js  
-│   │   └── ...  
-│   ├── routes/  
-│   │   ├── attendanceRoutes.js  
-│   │   ├── routeRoutes.js  
-│   │   └── ...  
-│   ├── index.js  
-│   ├── ...  
-│  
-├── config/  
-│   ├── fireb  aseConfig.js
-│   ├── ...  
-│    
-├── public/    
-│   ├── images/  
-│   ├── ...  
-│    
-├── README.md  
-├── package.json  
-├── ...  
-
+.
+├── campusmarg /
+│   ├── > .expo 
+│   ├── app /
+│   │   ├── _layout.tsx 
+│   │   ├── About.tsx 
+│   │   ├── BottomTabs.tsx 
+│   │   ├── Help.tsx 
+│   │   ├── Home.tsx 
+│   │   ├── index.tsx 
+│   │   ├── Map.tsx 
+│   │   ├── Profile.tsx 
+│   │   ├── Settings.tsx 
+│   │   └── Welcome.tsx 
+│   ├── assets /
+│   │   ├── > fonts 
+│   │   ├── > images 
+│   │   └── {} Users.json 
+│   ├── > components 
+│   ├── > hooks 
+│   ├── > node_modules 
+│   ├── scripts 
+│   ├── .gitignore 
+│   ├── {} 
+│   ├── app.json 
+│   ├── TS 
+│   ├── expo-env.d.ts 
+│   ├── M 
+│   ├── {} package-lock.json 
+│   ├── {} package.json 
+│   ├── README.md 
+│   └── tsconfig.json 
+└── README.md
