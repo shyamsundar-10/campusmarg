@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Alert } from "react-native";
-import { Layout, Text, Toggle, Divider, List, ListItem, Button } from "@ui-kitten/components";
+import { Layout, Text, Toggle, Divider, Button } from "@ui-kitten/components";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Updates from "expo-updates";
+import { useRouter } from "expo-router";
 
-const SettingsScreen = () => {
+const Settings = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const router = useRouter();
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -20,25 +22,12 @@ const SettingsScreen = () => {
         style: "destructive",
         onPress: async () => {
           await AsyncStorage.removeItem("hasSeenWelcome");
-          await AsyncStorage.removeItem("userData");
+          await AsyncStorage.removeItem("currentUser");
           await Updates.reloadAsync();
         },
       },
     ]);
   };
-
-  const aboutData = [
-    {
-      title: "Terms of Use & Privacy Policy",
-      description: "Read our terms and privacy policies.",
-      onPress: () => alert("Terms of Use and Privacy Policy"),
-    },
-    {
-      title: "App Version",
-      description: "Version 1.0.0",
-      onPress: () => alert("Version 1.0.0"),
-    },
-  ];
 
   return (
     <Layout style={styles.container}>
@@ -61,19 +50,24 @@ const SettingsScreen = () => {
       <Text category="h6" style={styles.sectionTitle}>
         About
       </Text>
-      <List
-        data={aboutData}
-        ItemSeparatorComponent={Divider}
-        renderItem={({ item }) => (
-          <ListItem
-            title={item.title}
-            description={item.description}
-            onPress={item.onPress}
-          />
-        )}
-      />
-
-      <Divider style={styles.divider} />
+      <View style={styles.linkItem}>
+        <Text onPress={() => router.push("/Help")} style={styles.linkText}>
+          Help & Support
+        </Text>
+      </View>
+      <View style={styles.linkItem}>
+        <Text onPress={() => router.push("/About")} style={styles.linkText}>
+          About This App
+        </Text>
+      </View>
+      <View style={styles.linkItem}>
+        <Text style={styles.linkText} onPress={() => alert("Terms of Use and Privacy Policy")}>
+          Terms & Privacy Policy
+        </Text>
+      </View>
+      <View style={styles.linkItem}>
+        <Text style={styles.linkText}>App Version: 1.0.0</Text>
+      </View>
 
       {/* Logout */}
       <View style={styles.logoutContainer}>
@@ -104,6 +98,15 @@ const styles = StyleSheet.create({
   divider: {
     marginVertical: 20,
   },
+  linkItem: {
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: "#eee",
+  },
+  linkText: {
+    fontSize: 16,
+    color: "#3366FF",
+  },
   logoutContainer: {
     marginTop: "auto",
     paddingTop: 20,
@@ -112,4 +115,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SettingsScreen;
+export default Settings;

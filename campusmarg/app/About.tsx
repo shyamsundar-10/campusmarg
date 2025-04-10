@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Layout, Text, Card, Avatar } from "@ui-kitten/components";
-import { ScrollView } from "react-native-gesture-handler";
 const teamMembers = [
   {
     name: "Shyam",
@@ -25,7 +24,7 @@ const teamMembers = [
   },
 ];
 
-const AboutUs = () => {
+const About = () => {
   return (
     <ScrollView style={styles.container}>
       <Layout>
@@ -93,4 +92,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AboutUs;
+export default About;

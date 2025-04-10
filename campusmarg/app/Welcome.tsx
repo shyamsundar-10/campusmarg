@@ -8,7 +8,7 @@ type Props = {
   onDone: () => void;
 };
 
-const WelcomeScreen = ({ onDone }: Props) => {
+const Welcome = ({ onDone }: Props) => {
   const [userType, setUserType] = useState<"student" | "driver" | null>(null);
   const [sic, setSic] = useState("");
 
@@ -86,4 +86,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WelcomeScreen;
+export default Welcome;

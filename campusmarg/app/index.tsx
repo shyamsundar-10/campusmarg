@@ -1,5 +1,5 @@
 import React from "react";
-import BottomTabs from "../screens/BottomTabs";
+import BottomTabs from "./BottomTabs";
 
 const Index = () => {
   return <BottomTabs />;

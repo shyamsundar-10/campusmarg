@@ -93,7 +93,7 @@ const darkMapStyle = [
   },
 ];
 
-const MapScreen = () => {
+const Map = () => {
   const mapRef = useRef<MapView>(null);
   const [region, setRegion] = useState({
     latitude: 20.29,
@@ -182,4 +182,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MapScreen;
+export default Map;

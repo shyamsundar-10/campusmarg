@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout, Text, Card, Avatar } from "@ui-kitten/components";
+import { Text } from "@ui-kitten/components";
 import {
   View,
   TextInput,
@@ -9,7 +9,7 @@ import {
   Alert,
 } from "react-native";
 
-const HelpScreen = () => {
+const Help = () => {
   const [message, setMessage] = useState("");
 
   const handleSend = async () => {
@@ -36,7 +36,9 @@ const HelpScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text category="h3" style={styles.header}>Contact Support</Text>
+      <Text category="h3" style={styles.header}>
+        Contact Support
+      </Text>
       <TextInput
         style={styles.input}
         placeholder="Type your message here..."
@@ -47,7 +49,9 @@ const HelpScreen = () => {
         textAlignVertical="top"
       />
       <TouchableOpacity style={styles.button} onPress={handleSend}>
-        <Text category="h6" style={styles.buttonText}>Send</Text>
+        <Text category="h6" style={styles.buttonText}>
+          Send
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -87,4 +91,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HelpScreen;
+export default Help;

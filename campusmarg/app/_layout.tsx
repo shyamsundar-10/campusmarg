@@ -4,7 +4,7 @@ import { ApplicationProvider } from "@ui-kitten/components";
 import * as eva from "@eva-design/eva";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { View, ActivityIndicator } from "react-native";
-import WelcomeScreen from "../screens/WelcomeScreen";
+import WelcomeScreen from "./Welcome";
 
 export default function Layout() {
   const [hasSeenWelcome, setHasSeenWelcome] = useState<boolean | null>(null);

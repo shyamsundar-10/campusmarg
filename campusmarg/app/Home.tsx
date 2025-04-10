@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Layout, Input } from "@ui-kitten/components";
 import { Ionicons } from "@expo/vector-icons";
-import MapScreen from "./MapScreen";
+import Map from "./Map";
 
-const HomeScreen = () => {
+const Home = () => {
   return (
     <Layout style={styles.container}>
       {/* Search Bar */}
@@ -16,7 +16,7 @@ const HomeScreen = () => {
 
       {/* Live Bus Tracking (Yellow Box with Map) */}
       <View style={styles.mapContainer}>
-        <MapScreen />
+        <Map />
       </View>
 
       {/* White Boxes */}
@@ -113,4 +113,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default Home;
