@@ -11,10 +11,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import Profile from "@/app/Profile";
 import Settings from "@/app/Settings";
-import Map from "@/app/Map";
 import Home from "./Home";
-import HomeStudent from "./HomeStudent";
-import HomeDriver from "./HomeDriver";
 import Live from "./Live";
 const Tab = createBottomTabNavigator();
 
@@ -50,7 +47,7 @@ const CustomTabIcon = ({
       <Ionicons
         name={iconName as keyof typeof Ionicons.glyphMap}
         size={20}
-        color={focused ? "#1a237e" : "#888"}
+        color="#4b472b"
       />
     </View>
   );
@@ -67,14 +64,26 @@ const BottomTabs = () => (
     screenOptions={({ route }) => ({
       headerTitle: () => <AppLogo />,
       headerTitleAlign: "center",
-      tabBarShowLabel: true,
-      tabBarLabelStyle: {
-        fontSize: 12,
-        fontWeight: "600",
-        marginTop: 4,
+      headerStyle: {
+        backgroundColor: "#f3eee0",
+        elevation: 10,
+        shadowOpacity: 0.1,
       },
+      tabBarShowLabel: true,
+      tabBarLabel: ({ focused }) => (
+        <Text
+          style={{
+            fontSize: 12,
+            fontWeight: "bold",
+            color: "#4b472b",
+            marginTop: 4,
+          }}
+        >
+          {route.name}
+        </Text>
+      ),
       tabBarStyle: {
-        backgroundColor: "#f7f8fd",
+        backgroundColor: "#f3eee0",
         height: 100,
         paddingBottom: Platform.OS === "ios" ? 20 : 10,
         paddingTop: 15,
@@ -88,11 +97,7 @@ const BottomTabs = () => (
     })}
   >
     <Tab.Screen name="Home" component={Home} />
-    <Tab.Screen
-      name="Live"
-      component={Live}
-      options={{ headerShown: false }}
-    />
+    <Tab.Screen name="Live" component={Live} options={{ headerShown: false }} />
     <Tab.Screen name="Profile" component={Profile} />
     <Tab.Screen name="Settings" component={Settings} />
   </Tab.Navigator>
@@ -109,8 +114,6 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     margin: 10,
-    borderColor: "#c0d9e2",
-    borderWidth: 2,
     elevation: 5,
   },
   headerTitle: {
@@ -130,7 +133,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 36,
     borderRadius: 18,
-    backgroundColor: "#d9e4f5",
+    backgroundColor: "#ebe3bd",
   },
 });
 

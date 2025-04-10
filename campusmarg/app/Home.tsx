@@ -1,36 +1,63 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import React from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
 import { Layout, Input } from "@ui-kitten/components";
 import { Ionicons } from "@expo/vector-icons";
 import Map from "./Map";
+import * as Haptics from "expo-haptics";
 
 const Home = () => {
   return (
-    <Layout style={styles.container}>
-      {/* Search Bar */}
-      <Input
-        placeholder="Search Routes..."
-        accessoryLeft={() => <Ionicons name="search" size={30} color="black" />}
-        style={styles.searchBox}
-      />
+    <ScrollView style={{ backgroundColor: "#fffef4" }}>
+      <Layout style={styles.container}>
+        {/* Search Bar */}
+        <Input
+          placeholder="Search Routes..."
+          accessoryLeft={() => (
+            <Ionicons name="search" size={30} color="black" />
+          )}
+          style={styles.searchBox}
+        />
 
-      {/* Live Bus Tracking (Yellow Box with Map) */}
-      <View style={styles.mapContainer}>
-        <Map />
-      </View>
+        <View style={styles.mapContainer}>
+          <Map />
+        </View>
 
-      {/* White Boxes */}
-      <View style={styles.boxContainer}>
-        <TouchableOpacity style={styles.leftBox}>
-          <Ionicons name="help-buoy" size={40} color="red" />
-          <Text style={styles.leftButtonText}>Emergency</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.rightBox}>
-          <Ionicons name="calendar-outline" size={40} color="black" />
-          <Text style={styles.rightButtonText}>Something</Text>
-        </TouchableOpacity>
-      </View>
-    </Layout>
+        {/* Vertical Buttons */}
+        <View style={styles.boxContainer}>
+          <TouchableOpacity
+            style={styles.buttonBox}
+            activeOpacity={0.8}
+            onPress={async () => {
+              await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+            }}
+          >
+            <View style={styles.iconContainer}>
+              <Ionicons name="help-buoy" size={40} color="red" />
+            </View>
+            <View style={styles.separatorVertical} />
+            <View style={styles.textContainer}>
+              <Text style={styles.ButtonText}>Emergency SOS</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.buttonBox} activeOpacity={0.8}>
+            <View style={styles.iconContainer}>
+              <Ionicons name="calendar-outline" size={40} color="black" />
+            </View>
+            <View style={styles.separatorVertical} />
+            <View style={styles.textContainer}>
+              <Text style={styles.ButtonText}>Upcoming Feature</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </Layout>
+    </ScrollView>
   );
 };
 
@@ -38,17 +65,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "rgb(209, 229, 238)",
     paddingTop: 20,
+    backgroundColor: "#fff9eb",
   },
   searchBox: {
     width: "90%",
     borderRadius: 10,
-  },
-  boxContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "90%",
+    backgroundColor: "#f3eee0"
   },
   mapContainer: {
     marginTop: 20,
@@ -62,37 +85,45 @@ const styles = StyleSheet.create({
     borderColor: "#c0d9e2",
     borderWidth: 2,
   },
-  leftBox: {
-    width: "47.5%",
-    height: 160,
-    backgroundColor: "white",
-    borderRadius: 25,
+  boxContainer: {
+    width: "90%",
+    flexDirection: "column",
     alignItems: "center",
-    justifyContent: "space-evenly",
-    padding: 20,
-    elevation: 5,
+    gap: 20,
   },
-  rightBox: {
-    width: "47.5%",
-    height: 160,
-    backgroundColor: "white",
+  buttonBox: {
+    width: "100%",
+    height: 100,
+    backgroundColor: "#fff9eb",
     borderRadius: 25,
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-evenly",
-    padding: 20,
     elevation: 5,
+    overflow: "hidden",
   },
-  leftButtonText: {
+
+  iconContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  separatorVertical: {
+    width: 1,
+    height: "60%",
+    backgroundColor: "#ccc",
+  },
+
+  textContainer: {
+    flex: 3,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  ButtonText: {
     fontSize: 20,
-    color: "red",
-  },
-  rightButtonText: {
-    fontSize: 20,
-  },
-  errorText: {
-    textAlign: "center",
-    padding: 20,
-    color: "red",
+    color: "#000",
+    fontWeight:"600"
   },
 });
 

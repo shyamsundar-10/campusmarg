@@ -1,6 +1,8 @@
 import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Layout, Text, Card, Avatar } from "@ui-kitten/components";
+import ShineOverlay from "../components/ShineOverlay";
+
 const teamMembers = [
   {
     name: "Shyam",
@@ -27,22 +29,23 @@ const teamMembers = [
 const About = () => {
   return (
     <ScrollView style={styles.container}>
-      <Layout>
-        <Text category="h3" style={styles.sectionTitle}>
+      <Layout style={styles.innerLayout}>
+        <Text category="h4" style={styles.sectionTitle}>
           Development Team
         </Text>
         <View style={styles.teamContainer}>
           {teamMembers.map((member, index) => (
             <Card key={index} style={styles.teamCard}>
               <Avatar source={member.image} style={styles.avatar} />
-              <Text style={{ textAlign: "center" }} category="h6">
+              <Text style={styles.nameText} category="h6">
                 {member.name}
               </Text>
-              <Text style={{ textAlign: "center" }} category="s1">
+              <Text style={styles.roleText} category="s1">
                 {member.role}
               </Text>
             </Card>
           ))}
+          <ShineOverlay />
         </View>
         <Text style={styles.quote}>
           "Revolutionizing campus life with simplicity and efficiency."
@@ -55,14 +58,19 @@ const About = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#fff9eb",
+  },
+  innerLayout: {
     padding: 20,
-    backgroundColor: "white",
+    backgroundColor: "#fff9eb",
   },
   sectionTitle: {
     textAlign: "center",
-    padding: 20,
-    marginBottom: 20,
+    paddingVertical: 20,
+    marginTop: 50,
+    marginBottom: 10,
     fontWeight: "bold",
+    color: "#4b472b",
   },
   teamContainer: {
     flexDirection: "row",
@@ -74,21 +82,34 @@ const styles = StyleSheet.create({
     width: "47%",
     alignItems: "center",
     justifyContent: "center",
-    padding: 15,
+    backgroundColor: "#ebe3bd",
+    padding: 20,
     margin: 5,
-    borderRadius: 25,
+    borderRadius: 20,
     elevation: 5,
+  },
+  nameText: {
+    color: "#4b472b",
+    marginTop: 10,
+    textAlign: "center",
+  },
+  roleText: {
+    color: "#4b472b",
+    textAlign: "center",
   },
   quote: {
     textAlign: "center",
     fontStyle: "italic",
-    color: "gray",
-    margin: 50,
+    color: "#4b472b",
+    marginTop: 40,
+    fontSize: 16,
+    paddingHorizontal: 10,
   },
   avatar: {
     width: 100,
     height: 100,
     marginBottom: 10,
+    borderRadius: 50,
   },
 });
 

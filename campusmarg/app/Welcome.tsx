@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TextInput, Alert } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  Alert,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { Layout, Button, Text } from "@ui-kitten/components";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import users from "../assets/Users.json";
@@ -35,31 +42,70 @@ const Welcome = ({ onDone }: Props) => {
 
   return (
     <Layout style={styles.container}>
-      <Text category="h4" style={{ marginBottom: 20 }}>
-        Welcome
-      </Text>
-      {!userType ? (
-        <>
-          <Button onPress={() => setUserType("student")} style={styles.button}>
+      {/* Top Section */}
+      <View style={styles.topSection}>
+        <Image
+          source={require("../assets/images/icon.png")}
+          style={styles.logo}
+        />
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: "bold",
+          }}
+        >
+          Campus Marg
+        </Text>
+      </View>
+
+      {/* Middle / SIC Input Section */}
+      <View style={styles.middleSection}>
+        <Text style={{fontSize: 38, fontWeight:"bold", textAlign:"center"}}>Welcome!</Text>
+        {userType && (
+          <>
+            <TouchableOpacity
+              onPress={() => {
+                setUserType(null);
+                setSic("");
+              }}
+              style={styles.backButton}
+            >
+              <Text style={styles.backText}>{"<"} Back</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.label}>Enter your SIC Number</Text>
+            <TextInput
+              placeholder="e.g., 21BCSB14"
+              value={sic}
+              onChangeText={setSic}
+              style={styles.input}
+              placeholderTextColor="#a29e8d"
+            />
+            <Button onPress={handleVerification} style={styles.button}>
+              Verify
+            </Button>
+          </>
+        )}
+      </View>
+
+      {/* Bottom Section */}
+      {!userType && (
+        <View style={styles.bottomSection}>
+          <Button
+            onPress={() => setUserType("student")}
+            style={styles.button}
+            appearance="filled"
+          >
             I am a Student
           </Button>
-          <Button onPress={() => setUserType("driver")} style={styles.button}>
+          <Button
+            onPress={() => setUserType("driver")}
+            style={styles.button}
+            appearance="filled"
+          >
             I am a Driver
           </Button>
-        </>
-      ) : (
-        <>
-          <Text>Enter your SIC Number:</Text>
-          <TextInput
-            placeholder="e.g., 21BCSB14"
-            value={sic}
-            onChangeText={setSic}
-            style={styles.input}
-          />
-          <Button onPress={handleVerification} style={styles.button}>
-            Verify
-          </Button>
-        </>
+        </View>
       )}
     </Layout>
   );
@@ -68,21 +114,65 @@ const Welcome = ({ onDone }: Props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    padding: 24,
+    backgroundColor: "rgba(255, 249, 235, 0.95)",
+  },
+  topSection: {
+    marginBottom: 24,
+    flexDirection: "row",
     alignItems: "center",
-    padding: 20,
+    justifyContent: "center",
+  },
+  middleSection: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  bottomSection: {
+    marginBottom: 30,
+  },
+  logo: {
+    borderRadius: 20,
+    width: 40,
+    height: 40,
+    margin: 10,
+    elevation: 5,
+  },
+  title: {
+    fontSize: 42,
+    fontWeight: "900",
+    color: "#4b472b",
+    textAlign: "center",
+  },
+  label: {
+    color: "#4b472b",
+    marginBottom: 8,
+    fontWeight: "500",
+    fontSize: 16,
   },
   input: {
     borderWidth: 1,
-    borderColor: "#ccc",
-    padding: 10,
+    borderColor: "#dec97e",
+    backgroundColor: "#fff",
+    padding: 12,
     width: "100%",
-    marginVertical: 10,
-    borderRadius: 5,
+    borderRadius: 10,
+    marginBottom: 16,
+    color: "#4b472b",
   },
   button: {
-    marginVertical: 10,
+    backgroundColor: "#000",
+    borderColor: "#4b472b",
+    marginVertical: 8,
     width: "100%",
+  },
+  backButton: {
+    alignSelf: "flex-end",
+    marginBottom: 12,
+  },
+  backText: {
+    color: "#4b472b",
+    fontSize: 15,
+    fontWeight: "bold",
   },
 });
 

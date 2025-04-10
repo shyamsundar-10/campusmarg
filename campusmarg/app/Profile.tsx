@@ -126,6 +126,7 @@ const Profile = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:"#fff9eb",
   },
   scrollContainer: {
     padding: 20,
@@ -165,7 +166,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   section: {
-    padding: 10,
     marginBottom: 16,
   },
   sectionTitle: {

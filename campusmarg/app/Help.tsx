@@ -7,6 +7,9 @@ import {
   StyleSheet,
   Linking,
   Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
 } from "react-native";
 
 const Help = () => {
@@ -35,58 +38,68 @@ const Help = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text category="h3" style={styles.header}>
-        Contact Support
-      </Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Type your message here..."
-        value={message}
-        onChangeText={setMessage}
-        multiline
-        numberOfLines={15}
-        textAlignVertical="top"
-      />
-      <TouchableOpacity style={styles.button} onPress={handleSend}>
-        <Text category="h6" style={styles.buttonText}>
-          Send
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      style={{ flex: 1 }}
+    >
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text category="h4" style={styles.header}>
+          Contact Support
         </Text>
-      </TouchableOpacity>
-    </View>
+        <TextInput
+          style={styles.input}
+          placeholder="Type your message here..."
+          placeholderTextColor="#a29e8c"
+          value={message}
+          onChangeText={setMessage}
+          multiline
+          numberOfLines={15}
+          textAlignVertical="top"
+        />
+        <TouchableOpacity style={styles.button} onPress={handleSend}>
+          <Text category="h6" style={styles.buttonText}>
+            Send
+          </Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     padding: 20,
-    backgroundColor: "#fff",
+    backgroundColor: "#fff9eb",
   },
   header: {
     textAlign: "center",
-    padding: 20,
-    marginBottom: 20,
+    paddingVertical: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    color: "#4b472b",
     fontWeight: "bold",
   },
   input: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 0,
-    padding: 10,
+    borderWidth: 2,
+    borderColor: "#ebe3bd",
+    borderRadius: 15,
+    padding: 15,
     fontSize: 16,
-    height: 200,
+    height: 250,
+    backgroundColor: "#f3eee0",
+    color: "#4b472b",
     marginBottom: 20,
-    backgroundColor: "#f9f9f9",
   },
   button: {
-    backgroundColor: "#000",
-    padding: 15,
-    borderRadius: 0,
+    backgroundColor: "#ebe3bd",
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    borderRadius: 15,
     alignItems: "center",
   },
   buttonText: {
-    color: "#fff",
+    color: "#4b472b",
     fontWeight: "bold",
   },
 });

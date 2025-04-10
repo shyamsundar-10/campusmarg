@@ -6,13 +6,7 @@ import * as Updates from "expo-updates";
 import { useRouter } from "expo-router";
 
 const Settings = () => {
-  const [darkMode, setDarkMode] = useState(false);
   const router = useRouter();
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    // TODO: Connect with ThemeContext or UI Kitten theme switch
-  };
 
   const handleLogout = async () => {
     Alert.alert("Logout", "Are you sure you want to log out?", [
@@ -36,10 +30,6 @@ const Settings = () => {
         Appearance
       </Text>
       <View style={styles.itemRow}>
-        <Text>Light Theme</Text>
-        <Toggle disabled checked={darkMode} onChange={toggleDarkMode} />
-      </View>
-      <View style={styles.itemRow}>
         <Text>Notifications</Text>
         <Toggle disabled checked />
       </View>
@@ -57,11 +47,14 @@ const Settings = () => {
       </View>
       <View style={styles.linkItem}>
         <Text onPress={() => router.push("/About")} style={styles.linkText}>
-          About This App
+          Development Team
         </Text>
       </View>
       <View style={styles.linkItem}>
-        <Text style={styles.linkText} onPress={() => alert("Terms of Use and Privacy Policy")}>
+        <Text
+          style={styles.linkText}
+          onPress={() => alert("Final Year Major Project")}
+        >
           Terms & Privacy Policy
         </Text>
       </View>
@@ -71,7 +64,10 @@ const Settings = () => {
 
       {/* Logout */}
       <View style={styles.logoutContainer}>
-        <Button status="danger" onPress={handleLogout}>
+        <Button
+          style={{ backgroundColor: "red", borderWidth: 0 }}
+          onPress={handleLogout}
+        >
           Logout
         </Button>
       </View>
@@ -83,6 +79,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: "#fff9eb",
   },
   sectionTitle: {
     marginBottom: 10,
@@ -99,13 +96,12 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   linkItem: {
-    paddingVertical: 12,
+    paddingVertical: 20,
     borderBottomWidth: 1,
     borderBottomColor: "#eee",
   },
   linkText: {
     fontSize: 16,
-    color: "#3366FF",
   },
   logoutContainer: {
     marginTop: "auto",
