@@ -27,14 +27,9 @@ const Home = () => {
         </TouchableOpacity>
         <TouchableOpacity style={styles.rightBox}>
           <Ionicons name="calendar-outline" size={40} color="black" />
-          <Text style={styles.rightButtonText}>Attendance</Text>
+          <Text style={styles.rightButtonText}>Something</Text>
         </TouchableOpacity>
       </View>
-
-      {/* Chatbot Floating Button */}
-      <TouchableOpacity style={styles.chatbotButton}>
-        <Ionicons name="chatbubble-ellipses-outline" size={30} color="black" />
-      </TouchableOpacity>
     </Layout>
   );
 };
@@ -98,18 +93,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     padding: 20,
     color: "red",
-  },
-  chatbotButton: {
-    position: "absolute",
-    bottom: 50,
-    right: 20,
-    width: 70,
-    height: 70,
-    borderRadius: 25,
-    backgroundColor: "#FFF",
-    alignItems: "center",
-    justifyContent: "center",
-    elevation: 5,
   },
 });
 

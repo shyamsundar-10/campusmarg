@@ -13,8 +13,9 @@ import Profile from "@/app/Profile";
 import Settings from "@/app/Settings";
 import Map from "@/app/Map";
 import Home from "./Home";
-
-
+import HomeStudent from "./HomeStudent";
+import HomeDriver from "./HomeDriver";
+import Live from "./Live";
 const Tab = createBottomTabNavigator();
 
 const AppLogo = () => (
@@ -89,7 +90,7 @@ const BottomTabs = () => (
     <Tab.Screen name="Home" component={Home} />
     <Tab.Screen
       name="Live"
-      component={Map}
+      component={Live}
       options={{ headerShown: false }}
     />
     <Tab.Screen name="Profile" component={Profile} />
