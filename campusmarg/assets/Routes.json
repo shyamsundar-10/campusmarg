@@ -1,0 +1,428 @@
+{
+  "Route1": {
+    "BusNo": "OR-02-BH-0876",
+    "Stops": [
+      {
+        "Name": "Nuagaon IBP Petrol Pump (SP)",
+        "Coordinates": { "lat": 20.2961, "lng": 85.8245 }
+      },
+      {
+        "Name": "Gyatri College Chowk",
+        "Coordinates": { "lat": 20.2688, "lng": 85.841 }
+      },
+      {
+        "Name": "Samantarapur",
+        "Coordinates": { "lat": 20.2511, "lng": 85.8437 }
+      },
+      {
+        "Name": "Mahaveer Chowk",
+        "Coordinates": { "lat": 20.2545, "lng": 85.8432 }
+      },
+      {
+        "Name": "Garage Chowk",
+        "Coordinates": { "lat": 20.2584, "lng": 85.8425 }
+      },
+      {
+        "Name": "Ravi Talkies",
+        "Coordinates": { "lat": 20.2608, "lng": 85.8438 }
+      },
+      {
+        "Name": "Rajarani Petrol Pump",
+        "Coordinates": { "lat": 20.264, "lng": 85.8445 }
+      },
+      {
+        "Name": "Museum Chowk",
+        "Coordinates": { "lat": 20.2656, "lng": 85.8462 }
+      },
+      {
+        "Name": "Kalpana Chowk",
+        "Coordinates": { "lat": 20.2672, "lng": 85.8469 }
+      },
+      {
+        "Name": "Badagad Chowk",
+        "Coordinates": { "lat": 20.2733, "lng": 85.8443 }
+      },
+      {
+        "Name": "Old Station Square",
+        "Coordinates": { "lat": 20.2789, "lng": 85.8377 }
+      },
+      {
+        "Name": "Gupta Cable",
+        "Coordinates": { "lat": 20.281, "lng": 85.8383 }
+      },
+      {
+        "Name": "Laxmi Sagar",
+        "Coordinates": { "lat": 20.283, "lng": 85.8395 }
+      },
+      { "Name": "Bomikhal", "Coordinates": { "lat": 20.2862, "lng": 85.8409 } },
+      {
+        "Name": "Rasulgarh",
+        "Coordinates": { "lat": 20.2894, "lng": 85.8433 }
+      },
+      {
+        "Name": "Acharya Vihar",
+        "Coordinates": { "lat": 20.2964, "lng": 85.8497 }
+      },
+      {
+        "Name": "Damana (LS)",
+        "Coordinates": { "lat": 20.3059, "lng": 85.8453 }
+      }
+    ],
+    "Driver": "Ramesh Ch Baral - 9777748828"
+  },
+
+  "Route2": {
+    "BusNo": "OD-05-Z-6667",
+    "Stops": [
+      {
+        "Name": "Kalinga Vihar (SP)",
+        "Coordinates": { "lat": 20.2322, "lng": 85.7751 }
+      },
+      {
+        "Name": "Patrapada, Alu Gadi",
+        "Coordinates": { "lat": 20.2492, "lng": 85.7894 }
+      },
+      { "Name": "Aiginia", "Coordinates": { "lat": 20.2535, "lng": 85.8006 } },
+      { "Name": "Kolathia", "Coordinates": { "lat": 20.2593, "lng": 85.8069 } },
+      {
+        "Name": "Khandagiri",
+        "Coordinates": { "lat": 20.2632, "lng": 85.8134 }
+      },
+      {
+        "Name": "Baramunda Bus Stand",
+        "Coordinates": { "lat": 20.2673, "lng": 85.8173 }
+      },
+      {
+        "Name": "Ruchika Market and Rajdhani College",
+        "Coordinates": { "lat": 20.2692, "lng": 85.8194 }
+      },
+      {
+        "Name": "Fire Station",
+        "Coordinates": { "lat": 20.2725, "lng": 85.8232 }
+      },
+      {
+        "Name": "Delta Chhak",
+        "Coordinates": { "lat": 20.2755, "lng": 85.8255 }
+      },
+      {
+        "Name": "Stewart School",
+        "Coordinates": { "lat": 20.2783, "lng": 85.8281 }
+      },
+      {
+        "Name": "CRPF Chowk",
+        "Coordinates": { "lat": 20.2815, "lng": 85.8312 }
+      },
+      {
+        "Name": "VIP Colony",
+        "Coordinates": { "lat": 20.2841, "lng": 85.8336 }
+      },
+      {
+        "Name": "Ekamra Park",
+        "Coordinates": { "lat": 20.2873, "lng": 85.8362 }
+      },
+      {
+        "Name": "Saliasahi Chhak",
+        "Coordinates": { "lat": 20.2895, "lng": 85.8387 }
+      },
+      {
+        "Name": "Biju Patnaik College",
+        "Coordinates": { "lat": 20.291, "lng": 85.8402 }
+      },
+      {
+        "Name": "May Fair Chowk",
+        "Coordinates": { "lat": 20.2931, "lng": 85.8421 }
+      },
+      {
+        "Name": "Fortune Tower",
+        "Coordinates": { "lat": 20.2951, "lng": 85.8435 }
+      },
+      {
+        "Name": "Sailashree Vihar PH-1",
+        "Coordinates": { "lat": 20.3005, "lng": 85.8473 }
+      },
+      {
+        "Name": "Sailashree Vihar (LS)",
+        "Coordinates": { "lat": 20.302, "lng": 85.8495 }
+      }
+    ],
+    "Driver": "Basanta Ku Behera - 9938745882"
+  },
+
+  "Route3": {
+    "BusNo": "OD-02-S-1275",
+    "Stops": [
+      {
+        "Name": "DAV School, Pokhariput (SP)",
+        "Coordinates": { "lat": 20.2437, "lng": 85.8085 }
+      },
+      {
+        "Name": "Ekamra College",
+        "Coordinates": { "lat": 20.2463, "lng": 85.8096 }
+      },
+      {
+        "Name": "Bhimatangi Chowk",
+        "Coordinates": { "lat": 20.2482, "lng": 85.8127 }
+      },
+      {
+        "Name": "Punama Gate",
+        "Coordinates": { "lat": 20.2501, "lng": 85.8146 }
+      },
+      {
+        "Name": "Palaspalli Chowk",
+        "Coordinates": { "lat": 20.2525, "lng": 85.8169 }
+      },
+      {
+        "Name": "Airport Chowk",
+        "Coordinates": { "lat": 20.2563, "lng": 85.82 }
+      },
+      {
+        "Name": "Capital Hospital",
+        "Coordinates": { "lat": 20.2598, "lng": 85.8233 }
+      },
+      {
+        "Name": "Forest Park Chowk",
+        "Coordinates": { "lat": 20.2631, "lng": 85.8252 }
+      },
+      {
+        "Name": "Shishu Bhawan Chowk",
+        "Coordinates": { "lat": 20.2665, "lng": 85.827 }
+      },
+      {
+        "Name": "Bapuji Nagar Chowk",
+        "Coordinates": { "lat": 20.2693, "lng": 85.8291 }
+      },
+      {
+        "Name": "Rajmahal Chowk",
+        "Coordinates": { "lat": 20.2714, "lng": 85.8312 }
+      },
+      {
+        "Name": "Master Canteen Chowk",
+        "Coordinates": { "lat": 20.2731, "lng": 85.8334 }
+      },
+      {
+        "Name": "Sriya Talkies",
+        "Coordinates": { "lat": 20.2755, "lng": 85.8351 }
+      },
+      {
+        "Name": "Ram Mandir",
+        "Coordinates": { "lat": 20.2777, "lng": 85.837 }
+      },
+      {
+        "Name": "Housing Board Chowk",
+        "Coordinates": { "lat": 20.2801, "lng": 85.8393 }
+      },
+      {
+        "Name": "Redcross Chowk",
+        "Coordinates": { "lat": 20.2823, "lng": 85.8415 }
+      },
+      {
+        "Name": "Nicco Park Chowk",
+        "Coordinates": { "lat": 20.2844, "lng": 85.8433 }
+      },
+      {
+        "Name": "Regional Chowk",
+        "Coordinates": { "lat": 20.2862, "lng": 85.8455 }
+      },
+      {
+        "Name": "Acharya Vihar",
+        "Coordinates": { "lat": 20.2884, "lng": 85.8471 }
+      },
+      {
+        "Name": "Sainik School Chowk",
+        "Coordinates": { "lat": 20.2922, "lng": 85.849 }
+      },
+      {
+        "Name": "Patia (LS)",
+        "Coordinates": { "lat": 20.2968, "lng": 85.8506 }
+      }
+    ],
+    "Driver": "Prakash Prusty - 9938745879"
+  },
+
+  "Route4": {
+    "BusNo": "OD-02-R-1747",
+    "Stops": [
+      {
+        "Name": "Hotel Crown (SP)",
+        "Coordinates": { "lat": 20.2733, "lng": 85.8289 }
+      },
+      {
+        "Name": "Nayapally",
+        "Coordinates": { "lat": 20.2773, "lng": 85.8308 }
+      },
+      {
+        "Name": "Rajdhani Gas",
+        "Coordinates": { "lat": 20.2793, "lng": 85.8325 }
+      },
+      {
+        "Name": "CRPF Square",
+        "Coordinates": { "lat": 20.2813, "lng": 85.8342 }
+      },
+      {
+        "Name": "CBI Colony",
+        "Coordinates": { "lat": 20.2833, "lng": 85.836 }
+      },
+      {
+        "Name": "DAV School, Unit-8",
+        "Coordinates": { "lat": 20.2853, "lng": 85.8378 }
+      },
+      {
+        "Name": "Guest House Chowk",
+        "Coordinates": { "lat": 20.2873, "lng": 85.8396 }
+      },
+      {
+        "Name": "Gopabandhu Chhak",
+        "Coordinates": { "lat": 20.2893, "lng": 85.8414 }
+      },
+      {
+        "Name": "LIC Office and Raj Bhawan",
+        "Coordinates": { "lat": 20.2913, "lng": 85.8432 }
+      },
+      {
+        "Name": "Power House",
+        "Coordinates": { "lat": 20.2933, "lng": 85.845 }
+      },
+      {
+        "Name": "120 Battalion",
+        "Coordinates": { "lat": 20.2953, "lng": 85.8468 }
+      },
+      {
+        "Name": "Shastri Nagar",
+        "Coordinates": { "lat": 20.2973, "lng": 85.8486 }
+      },
+      {
+        "Name": "State Bank Colony",
+        "Coordinates": { "lat": 20.2993, "lng": 85.8504 }
+      },
+      {
+        "Name": "Kalinga Stadium",
+        "Coordinates": { "lat": 20.3013, "lng": 85.8522 }
+      },
+      {
+        "Name": "Jayadev Vihar Chowk",
+        "Coordinates": { "lat": 20.3033, "lng": 85.854 }
+      },
+      {
+        "Name": "Nalco Chowk",
+        "Coordinates": { "lat": 20.3053, "lng": 85.8558 }
+      },
+      {
+        "Name": "B.D.A. Colony",
+        "Coordinates": { "lat": 20.3073, "lng": 85.8576 }
+      },
+      {
+        "Name": "Housing Board",
+        "Coordinates": { "lat": 20.3093, "lng": 85.8594 }
+      },
+      {
+        "Name": "Kanan Vihar and IDEA Office",
+        "Coordinates": { "lat": 20.3113, "lng": 85.8612 }
+      },
+      {
+        "Name": "Magnet KIIT Chowk",
+        "Coordinates": { "lat": 20.3133, "lng": 85.863 }
+      },
+      {
+        "Name": "Prasanti Bihar Chowk (LS)",
+        "Coordinates": { "lat": 20.3153, "lng": 85.8648 }
+      }
+    ],
+    "Driver": "Dillip Ku Dhall - 9938745878"
+  },
+
+  "Route5": {
+    "BusNo": "OR-02-BH-0877",
+    "Stops": [
+      {
+        "Name": "VSS Nagar (SP)",
+        "Coordinates": { "lat": 20.3011, "lng": 85.8351 }
+      },
+      {
+        "Name": "Badambadi Chowk",
+        "Coordinates": { "lat": 20.3095, "lng": 85.8491 }
+      },
+      {
+        "Name": "Prabhujee School",
+        "Coordinates": { "lat": 20.3121, "lng": 85.8506 }
+      },
+      {
+        "Name": "Rasulgarh",
+        "Coordinates": { "lat": 20.2894, "lng": 85.8433 }
+      },
+      { "Name": "Palasuni", "Coordinates": { "lat": 20.2935, "lng": 85.8467 } },
+      {
+        "Name": "Cuttack-Puri Bypass Over Bridge",
+        "Coordinates": { "lat": 20.2957, "lng": 85.8489 }
+      },
+      {
+        "Name": "IMFA Chowk",
+        "Coordinates": { "lat": 20.2983, "lng": 85.8513 }
+      },
+      {
+        "Name": "Over Bridge Chowk",
+        "Coordinates": { "lat": 20.3009, "lng": 85.8531 }
+      },
+      {
+        "Name": "Big Bazaar Chowk",
+        "Coordinates": { "lat": 20.3035, "lng": 85.8554 }
+      },
+      {
+        "Name": "Kalimandir Chowk",
+        "Coordinates": { "lat": 20.3051, "lng": 85.8573 }
+      },
+      {
+        "Name": "IDBI Bank Chowk",
+        "Coordinates": { "lat": 20.3074, "lng": 85.8589 }
+      },
+      {
+        "Name": "Rupali Chhak",
+        "Coordinates": { "lat": 20.3092, "lng": 85.8601 }
+      },
+      {
+        "Name": "Vani Vihar",
+        "Coordinates": { "lat": 20.311, "lng": 85.8616 }
+      },
+      {
+        "Name": "Acharya Vihar",
+        "Coordinates": { "lat": 20.2964, "lng": 85.8497 }
+      },
+      {
+        "Name": "Sainik School Chowk",
+        "Coordinates": { "lat": 20.2922, "lng": 85.849 }
+      },
+      {
+        "Name": "Press Colony Chowk",
+        "Coordinates": { "lat": 20.2889, "lng": 85.8473 }
+      },
+      {
+        "Name": "Nalco Chowk",
+        "Coordinates": { "lat": 20.3053, "lng": 85.8558 }
+      },
+      {
+        "Name": "OMFED Chowk",
+        "Coordinates": { "lat": 20.3081, "lng": 85.8574 }
+      },
+      {
+        "Name": "B.D.A. Colony",
+        "Coordinates": { "lat": 20.3073, "lng": 85.8576 }
+      },
+      {
+        "Name": "Budhapark Chowk",
+        "Coordinates": { "lat": 20.3044, "lng": 85.8543 }
+      },
+      {
+        "Name": "Saraswati Shishumandir",
+        "Coordinates": { "lat": 20.3022, "lng": 85.8521 }
+      },
+      {
+        "Name": "Niladree Bihar",
+        "Coordinates": { "lat": 20.3, "lng": 85.8501 }
+      },
+      {
+        "Name": "Sailashree Vihar (LS)",
+        "Coordinates": { "lat": 20.302, "lng": 85.8495 }
+      }
+    ],
+    "Driver": "Ramod Ku Bastia - 9438171224"
+  }
+}
