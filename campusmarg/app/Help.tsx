@@ -11,9 +11,12 @@ import {
   Platform,
   ScrollView,
 } from "react-native";
+import { useNavigation } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
 const Help = () => {
   const [message, setMessage] = useState("");
+  const navigation = useNavigation();
 
   const handleSend = async () => {
     const mailtoLink = `mailto:support@campusmarg.com?subject=Support Request&body=${encodeURIComponent(
@@ -43,6 +46,12 @@ const Help = () => {
       style={{ flex: 1 }}
     >
       <ScrollView contentContainerStyle={styles.container}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <Ionicons name="arrow-back" size={28} color="#000" />
+      </TouchableOpacity>
         <Text category="h4" style={styles.header}>
           Contact Support
         </Text>
@@ -72,10 +81,17 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: "#fff9eb",
   },
+  backButton: {
+    position: "absolute",
+    top: 20,
+    left: 20,
+    zIndex: 10,
+    padding: 8,
+  },
   header: {
     textAlign: "center",
     paddingVertical: 20,
-    marginTop: 10,
+    marginTop: 50,
     marginBottom: 10,
     color: "#4b472b",
     fontWeight: "bold",

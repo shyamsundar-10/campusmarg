@@ -1,7 +1,9 @@
 import React from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Layout, Text, Card, Avatar } from "@ui-kitten/components";
 import ShineOverlay from "../components/ShineOverlay";
+import { useNavigation } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
 const teamMembers = [
   {
@@ -27,8 +29,16 @@ const teamMembers = [
 ];
 
 const About = () => {
+  const navigation = useNavigation();
+
   return (
     <ScrollView style={styles.container}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <Ionicons name="arrow-back" size={28} color="#000" />
+      </TouchableOpacity>
       <Layout style={styles.innerLayout}>
         <Text category="h4" style={styles.sectionTitle}>
           Development Team
@@ -59,6 +69,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff9eb",
+  },
+  backButton: {
+    position: "absolute",
+    top: 20,
+    left: 20,
+    zIndex: 10,
+    padding: 8,
   },
   innerLayout: {
     padding: 20,

@@ -60,7 +60,9 @@ const Welcome = ({ onDone }: Props) => {
 
       {/* Middle / SIC Input Section */}
       <View style={styles.middleSection}>
-        <Text style={{fontSize: 38, fontWeight:"bold", textAlign:"center"}}>Welcome!</Text>
+        <Text style={{ fontSize: 38, fontWeight: "bold", textAlign: "center" }}>
+          Welcome!
+        </Text>
         {userType && (
           <>
             <TouchableOpacity
@@ -81,7 +83,7 @@ const Welcome = ({ onDone }: Props) => {
               style={styles.input}
               placeholderTextColor="#a29e8d"
             />
-            <Button onPress={handleVerification} style={styles.button}>
+            <Button onPress={handleVerification} style={styles.Sbutton}>
               Verify
             </Button>
           </>
@@ -91,20 +93,20 @@ const Welcome = ({ onDone }: Props) => {
       {/* Bottom Section */}
       {!userType && (
         <View style={styles.bottomSection}>
-          <Button
+          <TouchableOpacity
             onPress={() => setUserType("student")}
-            style={styles.button}
-            appearance="filled"
+            style={styles.Sbutton}
           >
-            I am a Student
-          </Button>
-          <Button
+            <Text style={{ fontWeight: "bold", color: "#fff9eb" }}>
+              I am a Student
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => setUserType("driver")}
-            style={styles.button}
-            appearance="filled"
+            style={styles.Dbutton}
           >
-            I am a Driver
-          </Button>
+            <Text style={{ fontWeight: "bold" }}>I am a Driver</Text>
+          </TouchableOpacity>
         </View>
       )}
     </Layout>
@@ -159,11 +161,29 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     color: "#4b472b",
   },
-  button: {
-    backgroundColor: "#000",
-    borderColor: "#4b472b",
-    marginVertical: 8,
+  Sbutton: {
     width: "100%",
+    height: 60,
+    backgroundColor: "#000",
+    borderWidth: 0,
+    borderRadius: 25,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 5,
+    elevation: 5,
+  },
+  Dbutton: {
+    width: "100%",
+    height: 60,
+    backgroundColor: "#f3eee0",
+    borderWidth: 0,
+    borderRadius: 25,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 10,
+    elevation: 5,
   },
   backButton: {
     alignSelf: "flex-end",

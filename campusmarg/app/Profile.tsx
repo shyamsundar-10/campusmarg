@@ -9,12 +9,6 @@ import {
 import { Text, Layout } from "@ui-kitten/components";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-interface Address {
-  area: string;
-  latitude?: number;
-  longitude?: number;
-}
-
 interface User {
   name: string;
   photo: string;
@@ -22,7 +16,8 @@ interface User {
   usertype: string;
   phone?: string;
   bloodGroup?: string;
-  address?: Address;
+  address?: string;
+  route?: string;
 }
 
 const Profile = () => {
@@ -91,6 +86,13 @@ const Profile = () => {
                 <Text style={styles.value}>{user.bloodGroup}</Text>
               </View>
             )}
+            
+            {user.route && (
+              <View style={styles.infoItem}>
+                <Text style={styles.label}>Route</Text>
+                <Text style={styles.value}>{user.route}</Text>
+              </View>
+            )}
           </View>
         </View>
 
@@ -100,21 +102,7 @@ const Profile = () => {
 
             <View style={styles.infoItem}>
               <Text style={styles.label}>Area</Text>
-              <Text style={styles.value}>{user.address.area}</Text>
-            </View>
-
-            <View style={styles.infoItem}>
-              <Text style={styles.label}>Latitude</Text>
-              <Text style={styles.value}>
-                {user.address.latitude?.toString() ?? "N/A"}
-              </Text>
-            </View>
-
-            <View style={styles.infoItem}>
-              <Text style={styles.label}>Longitude</Text>
-              <Text style={styles.value}>
-                {user.address.longitude?.toString() ?? "N/A"}
-              </Text>
+              <Text style={styles.value}>{user.address}</Text>
             </View>
           </View>
         )}

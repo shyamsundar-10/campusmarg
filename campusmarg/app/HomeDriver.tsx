@@ -1,193 +1,196 @@
-import React, { useEffect, useRef, useState } from "react";
-import { View, Image, Text } from "react-native";
-import MapView, { Marker, Polyline } from "react-native-maps";
+import React, { useEffect, useState, useRef } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+  Dimensions,
+} from "react-native";
+import MapView, { Marker, Polyline, LatLng } from "react-native-maps";
 import * as Location from "expo-location";
-import Users from "../assets/Users.json";
 import { getORSRoute } from "../utils/getORSRoute";
+import routesData from "../assets/Routes.json";
+import { getDistance } from "geolib";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-type Coord = {
-  latitude: number;
-  longitude: number;
-  name: string;
-};
+const screenWidth = Dimensions.get("window").width;
 
 const HomeDriver = () => {
-  const [driverLocation, setDriverLocation] = useState<Coord | null>(null);
-  const [studentCoords, setStudentCoords] = useState<Coord[]>([]);
-  const [routeCoords, setRouteCoords] = useState<Coord[]>([]);
-  const [eta, setEta] = useState<number | null>(null);
-  const watchRef = useRef<Location.LocationSubscription | null>(null);
+  const mapRef = useRef<MapView>(null);
+  const [location, setLocation] = useState<LatLng | null>(null);
+  const [routeCoords, setRouteCoords] = useState<LatLng[]>([]);
+  const [completedCoords, setCompletedCoords] = useState<LatLng[]>([]);
+  const [eta, setEta] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [nextStop, setNextStop] = useState<LatLng | null>(null);
+  const [stops, setStops] = useState<LatLng[]>([]);
 
   useEffect(() => {
-    const init = async () => {
-      const students = Users.filter((u: any) => u.usertype === "student");
+    (async () => {
+      // Get current user from AsyncStorage
+      const storedUser = await AsyncStorage.getItem("currentUser");
+      if (!storedUser) return;
 
-      const coords: Coord[] = students
-        .map((s: any) => {
-          const lat = parseFloat(s?.address?.latitude);
-          const lon = parseFloat(s?.address?.longitude);
-          if (!isNaN(lat) && !isNaN(lon)) {
-            return {
-              latitude: lat,
-              longitude: lon,
-              name: s.name,
-            };
-          }
-          return null;
-        })
-        .filter(Boolean) as Coord[];
+      const user = JSON.parse(storedUser);
+      const userRouteKey = (user?.route ?? "Route1") as keyof typeof routesData;
+      const route = routesData[userRouteKey];
 
-      setStudentCoords(coords);
+      if (!route || !route.Stops) {
+        console.error(`Route ${userRouteKey} not found in Routes.json`);
+        return;
+      }
 
-      const { status } = await Location.requestForegroundPermissionsAsync();
+      const stopCoords = route.Stops.map((stop: any) => ({
+        latitude: stop.Coordinates.lat,
+        longitude: stop.Coordinates.lng,
+      }));
+      setStops(stopCoords);
+
+      let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") return;
 
       const loc = await Location.getCurrentPositionAsync({});
-      const initialDriver = {
+      const current = {
         latitude: loc.coords.latitude,
         longitude: loc.coords.longitude,
-        name: "You (Driver)",
       };
-      setDriverLocation(initialDriver);
+      setLocation(current);
 
-      const fullRoute = [initialDriver, ...coords];
-      const orsRoute = await getORSRoute(fullRoute);
-      const namedRoute: Coord[] = orsRoute.map((p) => ({ ...p, name: "" }));
-      setRouteCoords(namedRoute);
-
-      // Start location tracking
-      watchRef.current = await Location.watchPositionAsync(
-        {
-          accuracy: Location.Accuracy.High,
-          timeInterval: 2000,
-          distanceInterval: 10,
-        },
-        (locUpdate) => {
-          const updatedLocation = {
-            latitude: locUpdate.coords.latitude,
-            longitude: locUpdate.coords.longitude,
-            name: "You (Driver)",
-          };
-          setDriverLocation(updatedLocation);
-          updateProgressAndETA(updatedLocation, namedRoute);
-        }
-      );
-    };
-
-    init();
-
-    return () => {
-      if (watchRef.current) {
-        watchRef.current.remove();
-      }
-    };
+      const fullPath = [current, ...stopCoords];
+      const orsPath = await getORSRoute(fullPath);
+      setRouteCoords(orsPath);
+      setNextStop(stopCoords[0]);
+      setIsLoading(false);
+    })();
   }, []);
 
-  const updateProgressAndETA = async (current: Coord, route: Coord[]) => {
-    const closestIndex = findClosestPointIndex(current, route);
-    const remaining = route.slice(closestIndex);
-    const distance = await calculateRouteDistance(remaining);
-    const speed = 30; // km/h
-    setEta(Math.round((distance / speed) * 60)); // in minutes
-  };
-
-  const findClosestPointIndex = (current: Coord, route: Coord[]) => {
-    let minDist = Infinity;
-    let index = 0;
-    route.forEach((point, i) => {
-      const d = haversineDistance(current, point);
-      if (d < minDist) {
-        minDist = d;
-        index = i;
+  useEffect(() => {
+    const locationSub = Location.watchPositionAsync(
+      {
+        accuracy: Location.Accuracy.High,
+        timeInterval: 3000,
+        distanceInterval: 10,
+      },
+      (loc) => {
+        const current = {
+          latitude: loc.coords.latitude,
+          longitude: loc.coords.longitude,
+        };
+        setLocation(current);
+        updateProgress(current);
+        updateETA(current);
       }
-    });
-    return index;
-  };
+    );
+    return () => {
+      locationSub.then((sub) => sub.remove());
+    };
+  }, [routeCoords, stops]);
 
-  const calculateRouteDistance = async (coords: Coord[]) => {
-    let total = 0;
-    for (let i = 0; i < coords.length - 1; i++) {
-      total += haversineDistance(coords[i], coords[i + 1]);
+  const updateProgress = (current: LatLng) => {
+    if (routeCoords.length === 0) return;
+
+    const index = routeCoords.findIndex(
+      (coord) => getDistance(coord, current) < 30
+    );
+    if (index !== -1) {
+      const completed = routeCoords.slice(0, index);
+      setCompletedCoords(completed);
+
+      const next = stops.find((stop) => getDistance(current, stop) > 30);
+      if (next) setNextStop(next);
     }
-    return total;
   };
 
-  const haversineDistance = (a: Coord, b: Coord): number => {
-    const toRad = (x: number) => (x * Math.PI) / 180;
-    const R = 6371;
-    const dLat = toRad(b.latitude - a.latitude);
-    const dLon = toRad(b.longitude - a.longitude);
-    const lat1 = toRad(a.latitude);
-    const lat2 = toRad(b.latitude);
-
-    const aCalc =
-      Math.sin(dLat / 2) ** 2 +
-      Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
-
-    return R * 2 * Math.atan2(Math.sqrt(aCalc), Math.sqrt(1 - aCalc));
+  const updateETA = (current: LatLng) => {
+    if (!nextStop) return;
+    const distanceToNextStop = getDistance(current, nextStop);
+    const speedKmh = 20;
+    const etaMinutes = (distanceToNextStop / 1000 / speedKmh) * 60;
+    setEta(`${Math.round(etaMinutes)} min to next stop`);
   };
 
-  if (!driverLocation || routeCoords.length === 0) return null;
-
-  const progressIndex = findClosestPointIndex(driverLocation, routeCoords);
-  const pastRoute = routeCoords.slice(0, progressIndex + 1);
-  const futureRoute = routeCoords.slice(progressIndex + 1);
+  if (isLoading || !location) {
+    return (
+      <View style={styles.loader}>
+        <ActivityIndicator size="large" />
+        <Text>Loading map and route...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={{ flex: 1 }}>
       <MapView
+        ref={mapRef}
         style={{ flex: 1 }}
-        region={{
-          latitude: driverLocation.latitude,
-          longitude: driverLocation.longitude,
-          latitudeDelta: 0.02,
-          longitudeDelta: 0.02,
+        initialRegion={{
+          latitude: location.latitude,
+          longitude: location.longitude,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
         }}
+        showsUserLocation
       >
-        {/* Students */}
-        {studentCoords.map((s, i) => (
+        {stops.map((coord, index) => (
           <Marker
-            key={i}
-            coordinate={{ latitude: s.latitude, longitude: s.longitude }}
-            title={s.name}
-            description="Student Home"
-            pinColor="green"
+            key={index}
+            coordinate={coord}
+            title={`Stop ${index + 1}`}
+            pinColor="orange"
           />
         ))}
 
-        {/* Past Route */}
-        <Polyline coordinates={pastRoute} strokeWidth={4} strokeColor="orange" />
-        <Polyline coordinates={futureRoute} strokeWidth={4} strokeColor="gray" />
+        <Polyline
+          coordinates={completedCoords}
+          strokeColor="green"
+          strokeWidth={6}
+        />
+        <Polyline
+          coordinates={routeCoords.slice(completedCoords.length)}
+          strokeColor="red"
+          strokeWidth={4}
+        />
 
-        {/* Bus Marker */}
-        <Marker coordinate={driverLocation}>
-          <Image
-            source={require("../assets/images/icon.png")}
-            style={{ width: 40, height: 40 }}
-          />
+        <Marker coordinate={location}>
+          <View style={styles.busMarker}>
+            <Text style={{ fontSize: 24 }}>🚌</Text>
+          </View>
         </Marker>
       </MapView>
 
-      {/* ETA */}
-      {eta !== null && (
-        <View
-          style={{
-            position: "absolute",
-            top: 50,
-            alignSelf: "center",
-            backgroundColor: "#fff9eb",
-            padding: 10,
-            borderRadius: 10,
-            elevation: 5,
-          }}
-        >
-          <Text style={{ fontWeight: "600", color: "#4b472b" }}>
-            Estimated Time: {eta} min
-          </Text>
-        </View>
-      )}
+      <View style={styles.infoBox}>
+        <Text style={styles.infoText}>{eta}</Text>
+      </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  loader: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  infoBox: {
+    position: "absolute",
+    top: 50,
+    alignSelf: "center",
+    backgroundColor: "#fff",
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    borderRadius: 30,
+    elevation: 5,
+  },
+  infoText: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  busMarker: {
+    backgroundColor: "#fff",
+    borderRadius: 15,
+    padding: 5,
+    elevation: 5,
+  },
+});
 
 export default HomeDriver;

@@ -10,8 +10,16 @@ import { Layout, Input } from "@ui-kitten/components";
 import { Ionicons } from "@expo/vector-icons";
 import Map from "./Map";
 import * as Haptics from "expo-haptics";
+import { useRouter } from "expo-router";
 
 const Home = () => {
+  const router = useRouter();
+
+  const handleSOS = async () => {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+    router.push("/EmergencySOS");
+  };
+
   return (
     <ScrollView style={{ backgroundColor: "#fffef4" }}>
       <Layout style={styles.container}>
@@ -33,9 +41,7 @@ const Home = () => {
           <TouchableOpacity
             style={styles.buttonBox}
             activeOpacity={0.8}
-            onPress={async () => {
-              await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
-            }}
+            onPress={handleSOS}
           >
             <View style={styles.iconContainer}>
               <Ionicons name="help-buoy" size={40} color="red" />
@@ -52,7 +58,7 @@ const Home = () => {
             </View>
             <View style={styles.separatorVertical} />
             <View style={styles.textContainer}>
-              <Text style={styles.ButtonText}>Upcoming Feature</Text>
+              <Text style={styles.ButtonText}>Submit Attendance</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -82,7 +88,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     alignItems: "center",
     justifyContent: "center",
-    borderColor: "#c0d9e2",
+    borderColor: "#f3eee0",
     borderWidth: 2,
   },
   boxContainer: {
@@ -109,9 +115,9 @@ const styles = StyleSheet.create({
   },
 
   separatorVertical: {
-    width: 1,
+    width: 2,
     height: "60%",
-    backgroundColor: "#ccc",
+    backgroundColor: "#f3eee0",
   },
 
   textContainer: {

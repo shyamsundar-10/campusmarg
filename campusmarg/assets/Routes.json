@@ -7,7 +7,7 @@
         "Coordinates": { "lat": 20.2961, "lng": 85.8245 }
       },
       {
-        "Name": "Gyatri College Chowk",
+        "Name": "Gayatri College Chowk",
         "Coordinates": { "lat": 20.2688, "lng": 85.841 }
       },
       {
@@ -68,7 +68,7 @@
         "Coordinates": { "lat": 20.3059, "lng": 85.8453 }
       }
     ],
-    "Driver": "Ramesh Ch Baral - 9777748828"
+    "Driver": "Ramesh Baral"
   },
 
   "Route2": {
@@ -145,7 +145,7 @@
         "Coordinates": { "lat": 20.302, "lng": 85.8495 }
       }
     ],
-    "Driver": "Basanta Ku Behera - 9938745882"
+    "Driver": "Basanta Behera"
   },
 
   "Route3": {
@@ -236,7 +236,7 @@
         "Coordinates": { "lat": 20.2968, "lng": 85.8506 }
       }
     ],
-    "Driver": "Prakash Prusty - 9938745879"
+    "Driver": "Prakash Prusty"
   },
 
   "Route4": {
@@ -327,7 +327,7 @@
         "Coordinates": { "lat": 20.3153, "lng": 85.8648 }
       }
     ],
-    "Driver": "Dillip Ku Dhall - 9938745878"
+    "Driver": "Dillip Dhal"
   },
 
   "Route5": {
@@ -423,6 +423,6 @@
         "Coordinates": { "lat": 20.302, "lng": 85.8495 }
       }
     ],
-    "Driver": "Ramod Ku Bastia - 9438171224"
+    "Driver": "Ramod Bastia"
   }
 }

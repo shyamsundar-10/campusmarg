@@ -1,29 +1,23 @@
 [
   {
     "photo": "https://randomuser.me/api/portraits/men/1.jpg",
-    "name": "Siddharth Bibhar",
-    "sic": "21BCTC09",
-    "phone": "8917256130",
-    "bloodGroup": "A+",
-    "usertype": "student",
-    "address": {
-      "area": "Infocity",
-      "latitude": 20.263669,
-      "longitude": 85.780533
-    }
-  },
-  {
-    "photo": "https://randomuser.me/api/portraits/men/2.jpg",
     "name": "Shyam Sundar Mohanty",
     "sic": "21BCSB14",
     "phone": "7205548508",
     "bloodGroup": "AB+",
     "usertype": "student",
-    "address": {
-      "area": "KIIT",
-      "latitude": 20.274772,
-      "longitude": 85.773441
-    }
+    "address": "Acharya Vihar",
+    "route": "Route1"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/men/2.jpg",
+    "name": "Siddharth Bibhar",
+    "sic": "21BCTC09",
+    "phone": "8917256130",
+    "bloodGroup": "A+",
+    "usertype": "student",
+    "address": "CRPF Chowk",
+    "route": "Route2"
   },
   {
     "photo": "https://randomuser.me/api/portraits/women/1.jpg",
@@ -32,11 +26,8 @@
     "phone": "7847017035",
     "bloodGroup": "B+",
     "usertype": "student",
-    "address": {
-      "area": "Sailashree Vihar",
-      "latitude": 20.335957,
-      "longitude": 85.805898
-    }
+    "address": "Master Canteen Chowk",
+    "route": "Route3"
   },
   {
     "photo": "https://randomuser.me/api/portraits/men/3.jpg",
@@ -45,63 +36,52 @@
     "phone": "9178308037",
     "bloodGroup": "AB+",
     "usertype": "student",
-    "address": {
-      "area": "Khandagiri",
-      "latitude": 20.278373,
-      "longitude": 85.762924
-    }
+    "address": "Kalinga Stadium",
+    "route": "Route4"
+  },
+  {
+    "photo": "https://randomuser.me/api/portraits/men/4.jpg",
+    "name": "Ramesh Baral",
+    "sic": "21DRVR01",
+    "phone": "9777748828",
+    "bloodGroup": "O+",
+    "usertype": "driver",
+    "route": "Route1"
   },
   {
     "photo": "https://randomuser.me/api/portraits/men/5.jpg",
-    "name": "Ankit Nayak",
-    "sic": "21BMJN34",
-    "phone": "8320456789",
-    "bloodGroup": "A+",
-    "usertype": "student",
-    "address": {
-      "area": "CRP Square",
-      "latitude": 20.305137,
-      "longitude": 85.756095
-    }
+    "name": "Basanta Behera",
+    "sic": "21DRVR02",
+    "phone": "9938745882",
+    "bloodGroup": "B-",
+    "usertype": "driver",
+    "route": "Route2"
   },
   {
     "photo": "https://randomuser.me/api/portraits/men/6.jpg",
-    "name": "Bijay Parida",
-    "sic": "21BKJP77",
-    "phone": "9867523104",
-    "bloodGroup": "O+",
-    "usertype": "driver"
+    "name": "Prakash Prusty",
+    "sic": "21DRVR03",
+    "phone": "9938745879",
+    "bloodGroup": "A+",
+    "usertype": "driver",
+    "route": "Route3"
   },
   {
-    "photo": "https://randomuser.me/api/portraits/women/7.jpg",
-    "name": "Puspanjali Rath",
-    "sic": "21BLGH65",
-    "phone": "9581246732",
-    "bloodGroup": "B-",
-    "usertype": "driver"
+    "photo": "https://randomuser.me/api/portraits/men/7.jpg",
+    "name": "Dillip Dhal",
+    "sic": "21DRVR04",
+    "phone": "9938745878",
+    "bloodGroup": "AB-",
+    "usertype": "driver",
+    "route": "Route4"
   },
   {
     "photo": "https://randomuser.me/api/portraits/men/8.jpg",
-    "name": "Tapan Kumar",
-    "sic": "21BNMV91",
-    "phone": "9348123001",
-    "bloodGroup": "A+",
-    "usertype": "driver"
-  },
-  {
-    "photo": "https://randomuser.me/api/portraits/women/9.jpg",
-    "name": "Nikita Panda",
-    "sic": "21BSLT58",
-    "phone": "9712312345",
-    "bloodGroup": "AB-",
-    "usertype": "driver"
-  },
-  {
-    "photo": "https://randomuser.me/api/portraits/men/10.jpg",
-    "name": "Rakesh Jena",
-    "sic": "21BKTR30",
-    "phone": "9834125670",
+    "name": "Ramod Bastia",
+    "sic": "21DRVR05",
+    "phone": "9438171224",
     "bloodGroup": "B+",
-    "usertype": "driver"
+    "usertype": "driver",
+    "route": "Route5"
   }
 ]

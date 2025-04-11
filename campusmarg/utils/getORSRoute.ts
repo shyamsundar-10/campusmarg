@@ -1,35 +1,30 @@
-import axios from "axios";
-import { ORS_API_KEY } from "../env";
+// utils/getORSRoute.ts
+import { ORS_API_KEY } from '../env';
+import { LatLng } from 'react-native-maps';
 
-type ORSCoord = {
-  latitude: number;
-  longitude: number;
-};
+export async function getORSRoute(coords: LatLng[]): Promise<LatLng[]> {
+  const formattedCoords = coords.map(c => [c.longitude, c.latitude]);
 
-export const getORSRoute = async (coords: ORSCoord[]): Promise<ORSCoord[]> => {
-  try {
-    const body = {
-      coordinates: coords.map((c) => [c.longitude, c.latitude]),
-    };
+  const body = {
+    coordinates: formattedCoords,
+    format: 'geojson',
+  };
 
-    const res = await axios.post(
-      "https://api.openrouteservice.org/v2/directions/driving-car/geojson",
-      body,
-      {
-        headers: {
-          Authorization: ORS_API_KEY,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+  const response = await fetch('https://api.openrouteservice.org/v2/directions/driving-car/geojson', {
+    method: 'POST',
+    headers: {
+      'Authorization': ORS_API_KEY,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
 
-    const points = res.data.features[0].geometry.coordinates;
-    return points.map(([lon, lat]: [number, number]) => ({
-      latitude: lat,
-      longitude: lon,
-    }));
-  } catch (error) {
-    console.error("ORS Route Error:", error);
-    return [];
-  }
-};
+  const data = await response.json();
+
+  const path: LatLng[] = data.features[0].geometry.coordinates.map((coord: number[]) => ({
+    latitude: coord[1],
+    longitude: coord[0],
+  }));
+
+  return path;
+}
