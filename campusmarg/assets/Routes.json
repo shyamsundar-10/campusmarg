@@ -1,6 +1,7 @@
 {
   "Route1": {
     "BusNo": "OR-02-BH-0876",
+    "RouteNo": "1",
     "Stops": [
       {
         "Name": "Nuagaon IBP Petrol Pump (SP)",
@@ -73,6 +74,7 @@
 
   "Route2": {
     "BusNo": "OD-05-Z-6667",
+    "RouteNo": "2",
     "Stops": [
       {
         "Name": "Kalinga Vihar (SP)",
@@ -150,6 +152,7 @@
 
   "Route3": {
     "BusNo": "OD-02-S-1275",
+    "RouteNo": "3",
     "Stops": [
       {
         "Name": "DAV School, Pokhariput (SP)",
@@ -241,6 +244,7 @@
 
   "Route4": {
     "BusNo": "OD-02-R-1747",
+    "RouteNo": "4",
     "Stops": [
       {
         "Name": "Hotel Crown (SP)",
@@ -332,6 +336,7 @@
 
   "Route5": {
     "BusNo": "OR-02-BH-0877",
+    "RouteNo": "5",
     "Stops": [
       {
         "Name": "VSS Nagar (SP)",
