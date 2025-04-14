@@ -1,29 +1,69 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Alert,
 } from "react-native";
 import { Layout, Input } from "@ui-kitten/components";
 import { Ionicons } from "@expo/vector-icons";
 import Map from "./Map";
 import * as Haptics from "expo-haptics";
 import { useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Home = () => {
   const router = useRouter();
+  const [usertype, setUsertype] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadUserType = async () => {
+      const storedUser = await AsyncStorage.getItem("currentUser");
+      if (storedUser) {
+        const user = JSON.parse(storedUser);
+        setUsertype(user?.usertype?.toLowerCase());
+      }
+    };
+
+    loadUserType();
+  }, []);
 
   const handleSOS = async () => {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
     router.push("/EmergencySOS");
   };
 
+  const handleNotifyStudent = () => {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    Alert.alert("Notification sent", "Students at the next stop have been notified.");
+    // You can trigger actual push/local notification here
+  };
+
+  const handleSubmitAttendance = () => {
+    Alert.alert(
+      "Confirm Attendance",
+      "Are you sure you want to submit your attendance?",
+      [
+        {
+          text: "No",
+          style: "cancel",
+        },
+        {
+          text: "Yes",
+          onPress: () => {
+            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+            Alert.alert("Attendance Submitted", "Your attendance has been recorded.");
+          },
+        },
+      ]
+    );
+  };
+
   return (
     <ScrollView style={{ backgroundColor: "#fffef4" }}>
       <Layout style={styles.container}>
-        {/* Search Bar */}
         <Input
           placeholder="Search Routes..."
           accessoryLeft={() => (
@@ -36,7 +76,6 @@ const Home = () => {
           <Map />
         </View>
 
-        {/* Vertical Buttons */}
         <View style={styles.boxContainer}>
           <TouchableOpacity
             style={styles.buttonBox}
@@ -52,15 +91,35 @@ const Home = () => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.buttonBox} activeOpacity={0.8}>
-            <View style={styles.iconContainer}>
-              <Ionicons name="calendar-outline" size={40} color="black" />
-            </View>
-            <View style={styles.separatorVertical} />
-            <View style={styles.textContainer}>
-              <Text style={styles.ButtonText}>Submit Attendance</Text>
-            </View>
-          </TouchableOpacity>
+          {usertype === "driver" ? (
+            <TouchableOpacity
+              style={styles.buttonBox}
+              activeOpacity={0.8}
+              onPress={handleNotifyStudent}
+            >
+              <View style={styles.iconContainer}>
+                <Ionicons name="notifications-outline" size={40} color="black" />
+              </View>
+              <View style={styles.separatorVertical} />
+              <View style={styles.textContainer}>
+                <Text style={styles.ButtonText}>Notify Student</Text>
+              </View>
+            </TouchableOpacity>
+          ) : usertype === "student" ? (
+            <TouchableOpacity
+              style={styles.buttonBox}
+              activeOpacity={0.8}
+              onPress={handleSubmitAttendance}
+            >
+              <View style={styles.iconContainer}>
+                <Ionicons name="calendar-outline" size={40} color="black" />
+              </View>
+              <View style={styles.separatorVertical} />
+              <View style={styles.textContainer}>
+                <Text style={styles.ButtonText}>Submit Attendance</Text>
+              </View>
+            </TouchableOpacity>
+          ) : null}
         </View>
       </Layout>
     </ScrollView>
