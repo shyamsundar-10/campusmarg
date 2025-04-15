@@ -17,6 +17,8 @@ import * as Haptics from "expo-haptics";
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import routesJson from "../assets/Routes.json";
+import * as Notifications from 'expo-notifications';
+import { registerForPushNotificationsAsync, scheduleLocalNotification } from '../utils/notifications';
 
 type Stop = {
   Name: string;
@@ -81,6 +83,38 @@ const Home = () => {
     loadRoutes();
   }, []);
 
+  useEffect(() => {
+    const loadUserType = async () => {
+      const storedUser = await AsyncStorage.getItem("currentUser");
+      if (storedUser) {
+        try {
+          const user = JSON.parse(storedUser);
+          setUsertype(user?.usertype?.toLowerCase());
+        } catch (e) {
+          console.error("Failed to parse user data:", e);
+        }
+      }
+    };
+  
+    registerForPushNotificationsAsync();
+  
+    const subscription = Notifications.addNotificationReceivedListener(notification => {
+      console.log('Notification Received:', notification);
+    });
+  
+    loadUserType();
+    setAllRoutes(Object.values(routesData));
+  
+    return () => {
+      subscription.remove();
+    };
+  }, []);  
+
+  const handleSendNotification = () => {
+    scheduleLocalNotification('📢 Bus Arriving', 'Your bus is almost at your stop!');
+  };
+  
+
   const handleSearch = (query: string) => {
     setSearchQuery(query);
     if (!query.trim()) {
@@ -114,7 +148,7 @@ const Home = () => {
     setFilteredResults([]);
     Alert.alert(
       "Route Selected",
-      `You selected Stop: ${result.stopName}\nRoute: ${result.route.RouteNo}\nBus: ${result.route.BusNo}`
+      `Stop: ${result.stopName}\nRoute: ${result.route.RouteNo}\nBus: ${result.route.BusNo}`
     );
   };
 
@@ -160,7 +194,7 @@ const Home = () => {
         <Input
           placeholder="Search Routes by Bus No or Stop..."
           accessoryLeft={() => (
-            <Ionicons name="search" size={24} color="grey" />
+            <Ionicons name="search" size={30} color="grey" />
           )}
           style={styles.searchBox}
           value={searchQuery}
@@ -169,7 +203,7 @@ const Home = () => {
             searchQuery.length > 0
               ? () => (
                   <TouchableOpacity onPress={() => handleSearch("")}>
-                    <Ionicons name="close-circle" size={24} color="grey" />
+                    <Ionicons name="close-circle" size={30} color="grey" />
                   </TouchableOpacity>
                 )
               : undefined
@@ -221,7 +255,7 @@ const Home = () => {
           {usertype === "driver" ? (
             <TouchableOpacity
               style={styles.buttonBox}
-              onPress={handleNotifyStudent}
+              onPress={handleSendNotification}
             >
               <View style={styles.iconContainer}>
                 <Ionicons name="notifications-outline" size={40} color="black" />
@@ -264,11 +298,10 @@ const styles = StyleSheet.create({
     width: "90%",
     borderRadius: 10,
     backgroundColor: "#f3eee0",
-    marginBottom: 10,
+    marginBottom: 20,
   },
   overlayResultsContainer: {
     width: "90%",
-    maxHeight: height * 0.3,
     backgroundColor: "#fff",
     borderRadius: 10,
     borderWidth: 1,
@@ -312,7 +345,7 @@ const styles = StyleSheet.create({
   buttonBox: {
     flexDirection: "row",
     alignItems: "center",
-    height: 90,
+    height: 100,
     borderRadius: 20,
     backgroundColor: "#fff9eb",
     borderWidth: 1,
