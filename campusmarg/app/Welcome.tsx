@@ -1,3 +1,4 @@
+// campusmarg/app/Welcome.tsx
 import React, { useState } from "react";
 import {
   View,
@@ -42,27 +43,19 @@ const Welcome = ({ onDone }: Props) => {
 
   return (
     <Layout style={styles.container}>
-      {/* Top Section */}
       <View style={styles.topSection}>
         <Image
           source={require("../assets/images/icon.png")}
           style={styles.logo}
         />
-        <Text
-          style={{
-            fontSize: 20,
-            fontWeight: "bold",
-          }}
-        >
-          Campus Marg
-        </Text>
+        <Text style={{ fontSize: 20, fontWeight: "bold" }}>Campus Marg</Text>
       </View>
 
-      {/* Middle / SIC Input Section */}
       <View style={styles.middleSection}>
         <Text style={{ fontSize: 38, fontWeight: "bold", textAlign: "center" }}>
           Welcome!
         </Text>
+
         {userType && (
           <>
             <TouchableOpacity
@@ -90,7 +83,6 @@ const Welcome = ({ onDone }: Props) => {
         )}
       </View>
 
-      {/* Bottom Section */}
       {!userType && (
         <View style={styles.bottomSection}>
           <TouchableOpacity
@@ -112,7 +104,6 @@ const Welcome = ({ onDone }: Props) => {
     </Layout>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

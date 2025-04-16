@@ -19,6 +19,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import routesJson from "../assets/Routes.json";
 import * as Notifications from 'expo-notifications';
 import { registerForPushNotificationsAsync, scheduleLocalNotification } from '../utils/notifications';
+import { markStudentPresent } from "../utils/attendanceUtils";
 
 type Stop = {
   Name: string;
@@ -95,25 +96,29 @@ const Home = () => {
         }
       }
     };
-  
+
     registerForPushNotificationsAsync();
-  
-    const subscription = Notifications.addNotificationReceivedListener(notification => {
-      console.log('Notification Received:', notification);
-    });
-  
+
+    const subscription = Notifications.addNotificationReceivedListener(
+      (notification) => {
+        console.log("Notification Received:", notification);
+      }
+    );
+
     loadUserType();
     setAllRoutes(Object.values(routesData));
-  
+
     return () => {
       subscription.remove();
     };
-  }, []);  
+  }, []);
 
   const handleSendNotification = () => {
-    scheduleLocalNotification('📢 Bus Arriving', 'Your bus is almost at your stop!');
+    scheduleLocalNotification(
+      "📢 Bus Arriving",
+      "Your bus is almost at your stop!"
+    );
   };
-  
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -173,12 +178,24 @@ const Home = () => {
         { text: "No", style: "cancel" },
         {
           text: "Yes",
-          onPress: () => {
-            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-            Alert.alert(
-              "Attendance Submitted",
-              "Your attendance has been recorded."
-            );
+          onPress: async () => {
+            const storedUser = await AsyncStorage.getItem("currentUser");
+            if (storedUser) {
+              const user = JSON.parse(storedUser);
+              // console.log("Marking attendance for:", user.sic);
+
+              try {
+                console.log("Marking attendance for:", user.sic);
+                console.log("inside the try block");
+                await markStudentPresent(user.sic);
+                Alert.alert(
+                  "Attendance Submitted",
+                  "Your attendance has been recorded."
+                );
+              } catch (error: any) {
+                Alert.alert("Failed", error.message);
+              }
+            }
           },
         },
       ]
@@ -229,7 +246,8 @@ const Home = () => {
                     style={{ marginRight: 10 }}
                   />
                   <Text style={styles.resultText}>
-                    {result.stopName} | Route {result.route.RouteNo} | Bus {result.route.BusNo}
+                    {result.stopName} | Route {result.route.RouteNo} | Bus{" "}
+                    {result.route.BusNo}
                   </Text>
                 </TouchableOpacity>
               ))
@@ -258,7 +276,11 @@ const Home = () => {
               onPress={handleSendNotification}
             >
               <View style={styles.iconContainer}>
-                <Ionicons name="notifications-outline" size={40} color="black" />
+                <Ionicons
+                  name="notifications-outline"
+                  size={40}
+                  color="black"
+                />
               </View>
               <View style={styles.separatorVertical} />
               <View style={styles.textContainer}>

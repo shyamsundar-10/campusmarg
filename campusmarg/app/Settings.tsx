@@ -38,6 +38,16 @@ const Settings = () => {
 
       {/* About Section */}
       <Text category="h6" style={styles.sectionTitle}>
+        Conductor
+      </Text>
+      <View style={styles.linkItem}>
+        <Text onPress={() => router.push("/Conductor")} style={styles.linkText}>
+          Attendance
+        </Text>
+      </View>
+
+      {/* About Section */}
+      <Text category="h6" style={styles.sectionTitle}>
         About
       </Text>
       <View style={styles.linkItem}>
