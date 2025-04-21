@@ -112,9 +112,7 @@ If valid:
   - Sends Expo push to their **registered token**
 - Student receives native notification like:
 
-> 🔔 _"Your bus is approaching [Khandagiri Stop]"_
-
-🧭 Appears in the **Android/iOS notification tray**, even when the app is closed.
+> 🛎️ _"Your bus is approaching [Khandagiri Stop]"_
 
 ---
 
@@ -131,9 +129,9 @@ Database contains:
 
 ---
 
-## 🧪 Demo Data Overview
+## 📁 Demo Data Overview
 
-### 📂 Users.json (in `assets/`)
+### Users.json (in `assets/`)
 
 - **5 Drivers**: `21DRVR01` → `21DRVR05`
 - **5 Students**: `21BCSB14` → `21BCTC09`
@@ -145,7 +143,7 @@ Each student has:
 
 ---
 
-### 🗺️ Routes.json (in `assets/`)
+### Routes.json (in `assets/`)
 
 - **5 Routes**: `Route1` → `Route5`
 
