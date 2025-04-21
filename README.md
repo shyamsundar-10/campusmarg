@@ -32,6 +32,20 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
 ---
 
+## 📸 App Preview
+
+![Verification](https://github.com/user-attachments/assets/d0be09cd-d45b-4701-881e-1ebea34c519f)
+
+![BottomTab](https://github.com/user-attachments/assets/9879da8f-e5df-44d9-b33e-143904bfa4f3)
+
+![UI](https://github.com/user-attachments/assets/749a2666-d55d-469b-b2b7-17dfd27f41a8)
+
+![Other UI](https://github.com/user-attachments/assets/93aa5053-8afe-4156-8de6-ff01a3281aa8)
+
+![Logout](https://github.com/user-attachments/assets/133ab975-e2cc-4e1b-a5ee-6671b10f31d5)
+
+---
+
 ## ✨ Features
 
 - **Welcome Screen with SIC Validation**
@@ -57,16 +71,6 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
 - **Role-Based Home Screens**
   - Students, Drivers, and Conductors all get different map logic and actions
-
----
-
-## 📸 App Preview
-
-[Welcome and Verification]
-[Application UI]
-[Emergency Screen]
-[Live Map (For Drivers)]
-[Live Map (For Students)]
 
 ---
 
