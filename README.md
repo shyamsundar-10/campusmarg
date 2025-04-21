@@ -1,63 +1,175 @@
-# Campus Marg: Smart Student Commute Planner
+# 🚍 CampusMarg - A Route Optimization Mobile Application
 
-## Table of Contents
-1. Introduction
-2. Features
-3. Technologies Used
-4. File Structure
+A full-featured React Native + Expo app that simplifies student commutes in Silicon University with live tracking, push notifications, and attendance—all tailored for a campus environment.
 
-## Introduction
-Campus Marg is a mobile application designed to optimize school bus routes based on student attendance. This project aims to reduce fuel consumption and carbon emissions by dynamically updating bus routes using real-time student attendance data.
+---
 
-## Features
-- Student attendance confirmation before bus starts.
-- Real-time route optimization for school bus drivers.
-- Dynamic display of bus routes with green paths for attending students and red for non-attending students.
-- Shortest and most fuel-efficient route calculation.
-- User-friendly interface for both students and drivers.
+## 📲 Download the App
 
-## Technologies Used
-- React Native for mobile app development.
-- Node.js for backend services.
-- Firebase for real-time database and authentication.
-- Google Maps API for real-time mapping and GPS integration.
-- Google OR-Tools for route optimization.
+The CampusMarg app is live!
 
-## File Structure
-.  
-├── campusmarg /  
-│   ├── > .expo   
-│   ├── app /  
-│   │   ├── _layout.tsx   
-│   │   ├── About.tsx   
-│   │   ├── BottomTabs.tsx   
-│   │   ├── EmergencySOS.tsx   
-│   │   ├── Help.tsx   
-│   │   ├── Home.tsx   
-│   │   ├── HomeDriver.tsx   
-│   │   ├── HomeStudent.tsx   
-│   │   ├── index.tsx   
-│   │   ├── Map.tsx   
-│   │   ├── Profile.tsx   
-│   │   ├── Settings.tsx   
-│   │   └── Welcome.tsx   
-│   ├── assets /  
-│   │   ├── > fonts   
-│   │   ├── > images   
-│   │   └── Users.json     
-│   │   └── Routes.json     
-│   ├── > components   
-│   ├── > utils  
-│   │   └── getORSRoute.ts     
-│   ├── > hooks   
-│   ├── > node_modules 
-│   ├── scripts   
-│   ├── env.ts   
-│   ├── .gitignore   
-│   ├── app.json    
-│   ├── expo-env.d.ts   
-│   ├── package-lock.json   
-│   ├── package.json   
-│   ├── README.md   
-│   └── tsconfig.json   
-└── README.md  
+🌐 **Download for Android** 👉 [`https://campusmarg.netlify.app`](https://campusmarg.netlify.app)
+
+You can install the APK directly from the site for testing on Android devices.
+
+---
+
+## ▶️ Run the Project
+
+### Start Frontend (Expo)
+
+```bash
+npm install
+npm start
+```
+### Start Backend (FastAPI)
+From the backend directory (campusmarg/ or wherever main.py is located):
+
+```bash
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+![Fast API](https://github.com/user-attachments/assets/b30799a0-e2a2-4a41-a22b-1a2df3852820)
+
+---
+
+## ✨ Features
+
+- **Welcome Screen with SIC Validation**
+  - Select role: Student / Driver / Conductor
+  - Validate SIC (e.g., `21BCSB14`, `21DRVR01`) from `Users.json`
+  - Store user info locally in AsyncStorage
+
+- **Real-time Map with Routing**
+  - **Drivers**: See all bus stops from assigned route (Routes.json) with realistic OpenRouteService (ORS) path
+  - **Students**: View route from driver to their stop with ETA
+  - Animated bus icon showing live progress on path
+  - Route coloring: 🔶 orange path → 🔴 red progress
+
+- **Push Notifications (Expo)**
+  - Drivers can notify students at upcoming stop
+  - Push appears in mobile notification tray
+  - Notification includes student name and stop info
+
+- **Attendance System (MySQL + FastAPI)**
+  - Students tap to submit attendance via frontend
+  - Conductor sees live updates in `Conductor.tsx` screen
+  - Backend uses FastAPI to communicate with a MySQL database
+
+- **Role-Based Home Screens**
+  - Students, Drivers, and Conductors all get different map logic and actions
+
+---
+
+## 📸 App Preview
+
+[Welcome and Verification]
+[Application UI]
+[Emergency Screen]
+[Live Map (For Drivers)]
+[Live Map (For Students)]
+
+---
+
+## 🖥️ Tech Stack
+
+| Tech / Library             | Purpose                                  |
+|----------------------------|------------------------------------------|
+| **React Native + Expo**    | App development (Android/iOS/web)        |
+| **TypeScript**             | Static typing                            |
+| **expo-router**            | File-based navigation                    |
+| **AsyncStorage**           | Local storage for user/session           |
+| **UI Kitten + Eva Design** | UI library with theming                  |
+| **OpenRouteService API**   | Realistic driving path + ETA             |
+| **Expo Notifications**     | Push notifications (local + remote)      |
+| **Expo Location**          | Access current GPS coordinates           |
+| **FastAPI (Python)**       | Backend API framework                    |
+| **MySQL**                  | Database to store student and attendance |
+
+---
+
+## 👤 SIC Format Guide
+
+Every user must enter a valid **SIC** in the Welcome screen:
+
+| Type    | Example     | Rule                 |
+|---------|-------------|----------------------|
+| Student | `21BCSB14`  | 21B + _ _ (Branch) + _ _ _ (Random) |
+| Driver  | `21DRVR01`  | Fixed for demo drivers |
+
+✔️ Validated using local `Users.json` file.  
+If valid:
+
+- ✅ Saves user data to **AsyncStorage**
+- ✅ Redirects to bottom tab app flow
+
+---
+
+## 🔔 Push Notifications Flow
+
+- On first app load, **Expo registers** the device for notifications
+- **Driver presses Notify Student** button:
+  - App finds students at the **next stop**
+  - Sends Expo push to their **registered token**
+- Student receives native notification like:
+
+> 🔔 _"Your bus is approaching [Khandagiri Stop]"_
+
+🧭 Appears in the **Android/iOS notification tray**, even when the app is closed.
+
+---
+
+## 📝 Attendance Flow (Backend)
+
+- Attendance records are handled by the **FastAPI** backend
+- Frontend sends attendance submission request to backend
+- Backend writes attendance data to **MySQL** tables
+- **Conductor.tsx** polls backend to fetch real-time updates
+
+Database contains:
+- `students` table
+- `attendance` table
+
+---
+
+## 🧪 Demo Data Overview
+
+### 📂 Users.json (in `assets/`)
+
+- **5 Drivers**: `21DRVR01` → `21DRVR05`
+- **5 Students**: `21BCSB14` → `21BCTC09`
+
+Each student has:
+- `name`, `phone`, `blood group`
+- `lat/lon` for pickup location
+- `SIC` and `assigned route`
+
+---
+
+### 🗺️ Routes.json (in `assets/`)
+
+- **5 Routes**: `Route1` → `Route5`
+
+Each route includes:
+- `BusNo`, `Driver Name`, `Phone`
+- `Stops[]` → Each with:
+  - `Name`
+  - `Coordinates` (lat/lon)
+
+---
+
+## 🎨 App Color Palette
+
+| Element             | Color Code |
+|---------------------|------------|
+| Background (Light)  | `#fff9eb`  |
+| Text & Icons        | `#4b472b`  |
+| Top/Bottom Bars     | `#f3eee0`  |
+| Pill Highlights     | `#ebe3bd`  |
+
+![App Logo](https://github.com/user-attachments/assets/9362d158-0278-4934-8e44-9d8db3cd14d8)
+
+---
+
+## 🧾 License
+
+This project is for **learning**, **demo**, and **prototype** purposes only.  Not intended for commercial distribution or deployment.
